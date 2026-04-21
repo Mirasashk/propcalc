@@ -11,30 +11,33 @@
 
 | Function | File | Used By | Purpose |
 |----------|------|---------|---------|
-| `formatCurrency(n: number, currency?: string)` | `utils/currency.ts` | mortgage, roi, cap-rate | `$1,234.56` display |
-| `parseCurrency(s: string): number` | `utils/currency.ts` | all forms | Parse user currency input |
-| `validateNumberRange(n: number, min: number, max: number, field: string)` | `utils/validation.ts` | all forms | Throws ValidationError |
-| `calculateCompoundInterest(principal, rate, years, compoundsPerYear)` | `utils/math.ts` | mortgage, rent-vs-buy | Core financial math |
-| `calculateAmortizationSchedule(...)` | `utils/math.ts` | mortgage | Monthly breakdown array |
+| `formatCurrency(n, opts?)` | `utils/currency.ts` | mortgage UI, all results | `$1,234.56` display |
+| `parseCurrency(s)` | `utils/currency.ts` | all forms | Parse user currency input |
+| `formatPercent(n, decimals?)` | `utils/currency.ts` | all results | `5.50%` display |
+| `parsePercent(s)` | `utils/currency.ts` | all forms | Parse percentage input |
+| `validateNumberRange(n, min, max, field)` | `utils/validation.ts` | all forms | Throws on invalid |
 
 ## UI Components (src/components/ui/)
 
 | Component | File | Props | Used By |
 |-----------|------|-------|---------|
-| `Button` | `ui/Button.tsx` | `variant`, `onPress`, `loading`, `disabled` | all screens |
-| `Input` | `ui/Input.tsx` | `label`, `value`, `onChangeText`, `keyboardType`, `error` | all forms |
-| `CurrencyInput` | `ui/CurrencyInput.tsx` | `value`, `onChange`, `currency` | all calculators |
-| `Card` | `ui/Card.tsx` | `title`, `children`, `onPress` | results, property list |
-| `Chart` | `ui/Chart.tsx` | `data`, `type`, `config` | amortization, comparison |
+| `Input` | `ui/Input.tsx` | `label, value, onChangeText, keyboardType, placeholder, error, helperText, currency?` | all forms |
+| `Button` | `ui/Button.tsx` | `title, onPress, variant, loading, disabled` | all screens |
+| `Card` | `ui/Card.tsx` | `title, children, style` | results, lists |
 
 ## Calculator Components (src/components/calculators/)
 
 | Component | File | Props | Used By |
 |-----------|------|-------|---------|
-| `CalculatorForm` | `calculators/CalculatorForm.tsx` | `fields`, `onSubmit`, `validationSchema`, `defaultValues` | all calculators |
-| `ResultCard` | `calculators/ResultCard.tsx` | `title`, `value`, `unit`, `highlight` | all calculators |
+| `CalculatorForm` | `calculators/CalculatorForm.tsx` | `onSubmit, children, validation, defaultValues` | all calculators |
+| `ResultCard` | `calculators/ResultCard.tsx` | `title, value, unit?, highlight?` | all calculators |
 | `AmortizationChart` | `calculators/AmortizationChart.tsx` | `data: AmortizationEntry[]` | mortgage |
-| `ComparisonTable` | `calculators/ComparisonTable.tsx` | `properties: Property[]` | compare |
+
+## Engine Functions (src/engine/)
+
+| Function | File | Input | Output | Tests |
+|----------|------|-------|--------|-------|
+| `calculateMortgage(input)` | `mortgage.ts` | `MortgageInput` | `MortgageResult` | ✅ 21 tests |
 
 ## Property Components (src/components/property/)
 
@@ -97,4 +100,7 @@
 
 | Date | Change | PR |
 |------|--------|-----|
-| | | |
+| 2025-04-21 | Added mortgage calculator engine + 21 tests | #3 |
+| 2025-04-21 | Added UI components: Input, Button, Card | #3 |
+| 2025-04-21 | Added calculator components: CalculatorForm, ResultCard, AmortizationChart | #3 |
+| 2025-04-21 | Added mortgage calculator screen | #3 |
