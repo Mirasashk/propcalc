@@ -8,7 +8,9 @@
 | **Last Updated** | 2025-04-21 |
 | **Active Feature** | None (project setup in progress) |
 | **Open PRs** | 0 |
-| **Ready for Development** | ❌ (waiting for repo + Firebase setup) |
+| **Ready for Development** | ❌ (waiting for Expo + Firebase setup) |
+| **GitHub Repo** | https://github.com/Mirasashk/propcalc |
+| **Project Board** | https://github.com/users/Mirasashk/projects/3 |
 
 ---
 
@@ -32,6 +34,8 @@
 | 2025-04-21 | Tech spec written | TECH_SPEC.md |
 | 2025-04-21 | Code registry template created | CODE_REGISTRY.md (empty) |
 | 2025-04-21 | Agent definitions written | AGENTS.md |
+| 2025-04-21 | GitHub repo created | https://github.com/Mirasashk/propcalc |
+| 2025-04-21 | GitHub Project board created | "PropCalc Development" |
 
 ---
 
@@ -69,15 +73,17 @@
 ## Next Actions (Priority Order)
 
 1. ✅ GitHub auth → create repo
-2. ⬜ Initialize Expo project (`npx create-expo-app`)
-3. ⬜ Setup Firebase project
-4. ⬜ Configure CI/CD (GitHub Actions)
-5. ⬜ Implement calculator engine (pure TypeScript)
-6. ⬜ Build first calculator UI (Mortgage)
-7. ⬜ Add save/share functionality
-8. ⬜ Implement auth (Firebase Anonymous)
-9. ⬜ Add property lookup (Zillow)
-10. ⬜ Setup monetization (RevenueCat + AdMob)
+2. ✅ GitHub Project board created
+3. ✅ Initial issues created (#1-5)
+4. ⬜ Initialize Expo project (`npx create-expo-app`)
+5. ⬜ Setup Firebase project
+6. ⬜ Configure CI/CD (GitHub Actions)
+7. ⬜ Implement calculator engine (pure TypeScript)
+8. ⬜ Build first calculator UI (Mortgage)
+9. ⬜ Add save/share functionality
+10. ⬜ Implement auth (Firebase Anonymous)
+11. ⬜ Add property lookup (Zillow)
+12. ⬜ Setup monetization (RevenueCat + AdMob)
 
 ---
 
