@@ -4,11 +4,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Phase** | 0 — Project Initialization |
+| **Phase** | 1 — Core Development |
 | **Last Updated** | 2025-04-21 |
-| **Active Feature** | None (project setup in progress) |
+| **Active Feature** | Mortgage Calculator (engine complete, UI in progress) |
 | **Open PRs** | 0 |
-| **Ready for Development** | ❌ (waiting for Expo + Firebase setup) |
+| **Ready for Development** | ✅ (Expo + engine ready) |
 | **GitHub Repo** | https://github.com/Mirasashk/propcalc |
 | **Project Board** | https://github.com/users/Mirasashk/projects/3 |
 
@@ -18,10 +18,10 @@
 
 | Layer | Technology | Status |
 |-------|-----------|--------|
-| Mobile | React Native (Expo) | ⬜ Not initialized |
+| Mobile | React Native (Expo) | ✅ SDK 52, TypeScript scaffolded |
 | Backend | Firebase | ⬜ Not initialized |
 | Local DB | WatermelonDB | ⬜ Not initialized |
-| Calc Engine | TypeScript | ⬜ Not implemented |
+| Calc Engine | TypeScript | ✅ Mortgage engine complete (21 tests) |
 | CI/CD | GitHub Actions + EAS | ⬜ Not configured |
 
 ---
@@ -36,6 +36,8 @@
 | 2025-04-21 | Agent definitions written | AGENTS.md |
 | 2025-04-21 | GitHub repo created | https://github.com/Mirasashk/propcalc |
 | 2025-04-21 | GitHub Project board created | "PropCalc Development" |
+| 2025-04-21 | Expo project scaffolded | SDK 52, TypeScript, all deps |
+| 2025-04-21 | Mortgage calculator engine | 21 tests, all passing, Decimal.js |
 
 ---
 
@@ -43,9 +45,9 @@
 
 | Item | Owner | Blocked By | ETA |
 |------|-------|-----------|-----|
-| GitHub repo creation | Kai | GitHub auth | Now |
-| Expo app scaffold | — | Repo | Next |
-| Firebase project setup | — | Repo | Next |
+| Mortgage Calculator UI | Frontend Agent | — | Now |
+| Firebase project setup | — | — | Next |
+| Local DB persistence | — | Firebase | Next |
 
 ---
 
@@ -53,8 +55,7 @@
 
 | Item | Blocker | Resolution |
 |------|---------|-----------|
-| Agent spawning | Gateway pairing issue | Fix: `openclaw gateway status` |
-| GitHub repo | GH auth needed | User: run `/tmp/bin/gh auth login` |
+| Agent spawning timeouts | Gateway reloads mid-task | Shorter tasks, better error handling |
 
 ---
 
@@ -67,6 +68,7 @@
 | 2025-04-21 | Freemium model | Ad-supported free + $4.99/year Pro |
 | 2025-04-21 | 6 MVP calculators | Core investor toolkit, expandable |
 | 2025-04-21 | Zillow/MLS lookup | Differentiator, but MVP stretch goal |
+| 2025-04-21 | Decimal.js for currency | Avoid floating point errors in financial calcs |
 
 ---
 
@@ -75,11 +77,11 @@
 1. ✅ GitHub auth → create repo
 2. ✅ GitHub Project board created
 3. ✅ Initial issues created (#1-5)
-4. ⬜ Initialize Expo project (`npx create-expo-app`)
-5. ⬜ Setup Firebase project
-6. ⬜ Configure CI/CD (GitHub Actions)
-7. ⬜ Implement calculator engine (pure TypeScript)
-8. ⬜ Build first calculator UI (Mortgage)
+4. ✅ Initialize Expo project
+5. ✅ Mortgage calculator engine (pure TypeScript)
+6. ⬜ Build mortgage calculator UI screen
+7. ⬜ Setup Firebase project
+8. ⬜ Configure CI/CD (GitHub Actions)
 9. ⬜ Add save/share functionality
 10. ⬜ Implement auth (Firebase Anonymous)
 11. ⬜ Add property lookup (Zillow)
@@ -97,6 +99,7 @@
 | App store rejection | Medium | High | Follow guidelines, clear privacy policy |
 | Pro conversion < 3% | Medium | High | A/B test pricing, feature gating |
 | Calculation errors (legal) | Low | Critical | Thorough testing, "estimate only" disclaimer |
+| Agent spawning timeouts | Medium | Medium | Shorter tasks, state checkpointing |
 
 ---
 
@@ -106,3 +109,6 @@
 - Development workflow: see AGENTS.md
 - All agents must read this file before starting work
 - Update this file after every merged PR
+- Reference values verified:
+  - $300k@6.5%/30yr = $1,896.20/month ✅
+  - $500k@7.0%/30yr = $3,326.51/month ✅
