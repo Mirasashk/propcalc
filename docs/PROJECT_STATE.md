@@ -38,6 +38,8 @@
 | 2025-04-21 | GitHub Project board created | "PropCalc Development" |
 | 2025-04-21 | Expo project scaffolded | SDK 52, TypeScript, all deps |
 | 2025-04-21 | Mortgage calculator engine | 21 tests, all passing, Decimal.js |
+| 2025-04-21 | UI components created | Input, Button, Card, ResultCard, AmortizationChart |
+| 2025-04-21 | Mortgage calculator screen | Full UI with form, results, chart toggle |
 
 ---
 
