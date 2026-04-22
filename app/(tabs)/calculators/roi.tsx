@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   useWindowDimensions,
+  Alert,
 } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useFormContext } from 'react-hook-form';
@@ -176,6 +177,7 @@ export default function ROICalculatorScreen(): React.JSX.Element {
 
   const [result, setResult] = useState<ROIResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [savedInputs, setSavedInputs] = useState<ROIFormData | null>(null);
 
   const handleCalculate = useCallback((data: ROIFormData) => {
     setError(null);
@@ -237,6 +239,7 @@ export default function ROICalculatorScreen(): React.JSX.Element {
         holdingPeriodYears,
       };
 
+      setSavedInputs(data);
       const roiResult = calculateROI(input);
       setResult(roiResult);
     } catch (err) {
@@ -244,9 +247,38 @@ export default function ROICalculatorScreen(): React.JSX.Element {
     }
   }, []);
 
-  const handleSave = useCallback(() => {
-    console.log('Save calculation:', result);
-  }, [result]);
+  const handleSave = useCallback(async () => {
+    if (!result || !savedInputs) return;
+    try {
+      const { saveCalculation } = await import('../../services/storage');
+      const { parseCurrency } = await import('../../engine/utils/currency');
+      await saveCalculation({
+        id: `roi-${Date.now()}`,
+        type: 'roi',
+        inputs: {
+          purchasePrice: parseCurrency(savedInputs.purchasePrice),
+          downPayment: parseCurrency(savedInputs.downPayment),
+          closingCosts: parseCurrency(savedInputs.closingCosts),
+          rehabCosts: parseCurrency(savedInputs.rehabCosts),
+          monthlyRent: parseCurrency(savedInputs.monthlyRent),
+          monthlyExpenses: parseCurrency(savedInputs.monthlyExpenses),
+          vacancyRate: parseFloat(savedInputs.vacancyRate) / 100,
+          appreciationRate: savedInputs.appreciationRate ? parseFloat(savedInputs.appreciationRate) / 100 : 0,
+          holdingPeriodYears: parseInt(savedInputs.holdingPeriodYears, 10),
+        },
+        result: {
+          cashOnCashReturn: result.cashOnCashReturn,
+          annualCashFlow: result.annualCashFlow,
+          totalReturn: result.totalReturn,
+          capRate: result.capRate,
+        },
+        createdAt: Date.now(),
+      });
+      Alert.alert('Saved', 'ROI calculation saved successfully!');
+    } catch (err) {
+      Alert.alert('Error', err instanceof Error ? err.message : 'Failed to save');
+    }
+  }, [result, savedInputs]);
 
   return (
     <ScrollView

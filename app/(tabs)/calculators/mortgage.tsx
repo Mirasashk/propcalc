@@ -113,6 +113,7 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
   const [result, setResult] = useState<MortgageResult | null>(null);
   const [showAmortization, setShowAmortization] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [savedInputs, setSavedInputs] = useState<MortgageFormData | null>(null);
 
   const handleCalculate = useCallback((data: MortgageFormData) => {
     setError(null);
@@ -144,6 +145,7 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
         downPayment: downPayment > 0 ? downPayment : undefined,
       };
 
+      setSavedInputs(data);
       const mortgageResult = calculateMortgage(input);
       setResult(mortgageResult);
       setShowAmortization(false);
@@ -153,7 +155,7 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
   }, []);
 
   const handleSave = useCallback(async () => {
-    if (!result) return;
+    if (!result || !savedInputs) return;
     try {
       const { saveCalculation } = await import('../../services/storage');
       const { parseCurrency } = await import('../../engine/utils/currency');
@@ -161,10 +163,10 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
         id: `mortgage-${Date.now()}`,
         type: 'mortgage',
         inputs: {
-          loanAmount: parseCurrency(data.loanAmount),
-          interestRate: parseFloat(data.interestRate),
-          loanTermYears: parseInt(data.loanTermYears, 10),
-          downPayment: data.downPayment ? parseCurrency(data.downPayment) : 0,
+          loanAmount: parseCurrency(savedInputs.loanAmount),
+          interestRate: parseFloat(savedInputs.interestRate),
+          loanTermYears: parseInt(savedInputs.loanTermYears, 10),
+          downPayment: savedInputs.downPayment ? parseCurrency(savedInputs.downPayment) : 0,
         },
         result: {
           monthlyPayment: result.monthlyPayment,
@@ -177,7 +179,7 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
     } catch (err) {
       Alert.alert('Error', err instanceof Error ? err.message : 'Failed to save');
     }
-  }, [result, data]);
+  }, [result, savedInputs]);
 
   return (
     <ScrollView

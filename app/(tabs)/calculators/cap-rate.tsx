@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   useWindowDimensions,
+  Alert,
 } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useFormContext } from 'react-hook-form';
@@ -111,6 +112,7 @@ export default function CapRateCalculatorScreen(): React.JSX.Element {
 
   const [result, setResult] = useState<CapRateResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [savedInputs, setSavedInputs] = useState<CapRateFormData | null>(null);
 
   const handleCalculate = useCallback((data: CapRateFormData) => {
     setError(null);
@@ -144,6 +146,7 @@ export default function CapRateCalculatorScreen(): React.JSX.Element {
         vacancyRate,
       };
 
+      setSavedInputs(data);
       const capRateResult = calculateCapRate(input);
       setResult(capRateResult);
     } catch (err) {
@@ -151,9 +154,31 @@ export default function CapRateCalculatorScreen(): React.JSX.Element {
     }
   }, []);
 
-  const handleSave = useCallback(() => {
-    console.log('Save calculation:', result);
-  }, [result]);
+  const handleSave = useCallback(async () => {
+    if (!result || !savedInputs) return;
+    try {
+      const { saveCalculation } = await import('../../services/storage');
+      const { parseCurrency } = await import('../../engine/utils/currency');
+      await saveCalculation({
+        id: `caprate-${Date.now()}`,
+        type: 'capRate',
+        inputs: {
+          purchasePrice: parseCurrency(savedInputs.purchasePrice),
+          grossAnnualRent: parseCurrency(savedInputs.grossAnnualRent),
+          operatingExpenses: parseCurrency(savedInputs.operatingExpenses),
+          vacancyRate: parseFloat(savedInputs.vacancyRate) / 100,
+        },
+        result: {
+          capRate: result.capRate,
+          noi: result.noi,
+        },
+        createdAt: Date.now(),
+      });
+      Alert.alert('Saved', 'Cap Rate calculation saved successfully!');
+    } catch (err) {
+      Alert.alert('Error', err instanceof Error ? err.message : 'Failed to save');
+    }
+  }, [result, savedInputs]);
 
   return (
     <ScrollView
