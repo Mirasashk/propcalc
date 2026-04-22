@@ -1,15 +1,13 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  preset: 'ts-jest',
   testEnvironment: 'node',
+  roots: ['<rootDir>/__tests__', '<rootDir>/src'],
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: {
-        strict: true,
-        esModuleInterop: true,
-        skipLibCheck: true,
-      }
-    }],
+    '^.+\\.ts$': 'babel-jest',
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  testMatch: ['**/__tests__/**/*.test.ts'],
+  collectCoverageFrom: [
+    'src/engine/**/*.ts',
+    '!src/engine/**/index.ts',
+  ],
 };

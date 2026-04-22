@@ -40,6 +40,8 @@
 | 2025-04-21 | Mortgage calculator engine | 21 tests, all passing, Decimal.js |
 | 2025-04-21 | UI components created | Input, Button, Card, ResultCard, AmortizationChart |
 | 2025-04-21 | Mortgage calculator screen | Full UI with form, results, chart toggle |
+| 2025-04-22 | ROI calculator engine | 18 tests, all passing |
+| 2025-04-22 | Cap Rate calculator engine | 11 tests, all passing |
 
 ---
 
