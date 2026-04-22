@@ -1,149 +1,145 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
-  FlatList,
-  RefreshControl,
-  TouchableOpacity,
+  ScrollView,
   Alert,
 } from 'react-native';
-import { useRouter } from 'expo-router';
-import { Text, IconButton, useTheme } from 'react-native-paper';
-import { useSavedCalculations } from '../../../src/hooks/useSavedCalculations';
-import { SavedCalculation } from '../../../src/types/saved';
-import { shareCalculation } from '../../../src/utils/share';
+import { Text, useTheme } from 'react-native-paper';
+import { Swipeable } from 'react-native-gesture-handler';
 
-function formatDate(ts: number): string {
-  return new Date(ts).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
-}
+import { Card, Button } from '../components/ui';
+import {
+  getCalculations,
+  deleteCalculation,
+  SavedCalculation,
+} from '../services/storage';
+import { shareCalculation } from '../utils/share';
+import { formatCurrency } from '../engine/utils/currency';
 
-function getTypeLabel(type: SavedCalculation['type']): string {
-  switch (type) {
-    case 'mortgage':
-      return 'Mortgage';
-    case 'roi':
-      return 'ROI';
-    case 'capRate':
-      return 'Cap Rate';
-    default:
-      return 'Calculation';
-  }
-}
-
-export default function SavedScreen(): React.JSX.Element {
+export default function SavedCalculationsScreen(): React.JSX.Element {
   const theme = useTheme();
-  const router = useRouter();
-  const { calculations, isLoading, error, delete: deleteCalc, refresh } = useSavedCalculations();
+  const [calculations, setCalculations] = useState<SavedCalculation[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleDelete = useCallback(
-    (item: SavedCalculation) => {
-      Alert.alert(
-        'Delete Calculation',
-        `Are you sure you want to delete "${item.name ?? getTypeLabel(item.type)}"?`,
-        [
-          { text: 'Cancel', style: 'cancel' },
-          {
-            text: 'Delete',
-            style: 'destructive',
-            onPress: () => deleteCalc(item.id),
-          },
-        ]
-      );
-    },
-    [deleteCalc]
-  );
-
-  const handleShare = useCallback(async (item: SavedCalculation) => {
+  const loadCalculations = useCallback(async () => {
     try {
-      await shareCalculation(item);
-    } catch {
+      const data = await getCalculations();
+      setCalculations(data);
+    } catch (err) {
+      console.error('Failed to load calculations:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadCalculations();
+  }, [loadCalculations]);
+
+  const handleDelete = useCallback(async (id: string) => {
+    try {
+      await deleteCalculation(id);
+      setCalculations((prev) => prev.filter((c) => c.id !== id));
+    } catch (err) {
+      Alert.alert('Error', 'Failed to delete calculation');
+    }
+  }, []);
+
+  const handleShare = useCallback(async (calc: SavedCalculation) => {
+    try {
+      await shareCalculation(calc);
+    } catch (err) {
       Alert.alert('Error', 'Failed to share calculation');
     }
   }, []);
 
-  const handlePress = useCallback(
-    (item: SavedCalculation) => {
-      router.push({
-        pathname: '/result/[id]',
-        params: { id: item.id },
-      });
-    },
-    [router]
+  const renderRightActions = useCallback(
+    (calc: SavedCalculation) => (
+      <View style={styles.actionsContainer}>
+        <Button
+          title="Share"
+          onPress={() => handleShare(calc)}
+          variant="secondary"
+          style={styles.actionButton}
+        />
+        <Button
+          title="Delete"
+          onPress={() => handleDelete(calc.id)}
+          variant="danger"
+          style={styles.actionButton}
+        />
+      </View>
+    ),
+    [handleDelete, handleShare]
   );
 
-  const renderItem = useCallback(
-    ({ item }: { item: SavedCalculation }) => (
-      <TouchableOpacity
-        onPress={() => handlePress(item)}
-        style={[styles.card, { backgroundColor: theme.colors.surfaceVariant }]}
-        activeOpacity={0.7}
-      >
-        <View style={styles.cardContent}>
-          <View style={styles.cardHeader}>
-            <View>
-              <Text style={[styles.typeLabel, { color: theme.colors.primary }]}>
-                {getTypeLabel(item.type)}
-              </Text>
-              <Text style={[styles.title, { color: theme.colors.onSurface }]}>
-                {item.name ?? `${getTypeLabel(item.type)} Calculation`}
-              </Text>
-              <Text style={[styles.date, { color: theme.colors.onSurfaceVariant }]}>
-                {formatDate(item.createdAt)}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.actions}>
-            <IconButton
-              icon="share-variant"
-              size={20}
-              onPress={() => handleShare(item)}
-              iconColor={theme.colors.primary}
-              accessibilityLabel="Share calculation"
-            />
-            <IconButton
-              icon="delete"
-              size={20}
-              onPress={() => handleDelete(item)}
-              iconColor={theme.colors.error}
-              accessibilityLabel="Delete calculation"
-            />
-          </View>
-        </View>
-      </TouchableOpacity>
-    ),
-    [handlePress, handleShare, handleDelete, theme]
-  );
+  const formatCalcSummary = (calc: SavedCalculation): string => {
+    switch (calc.type) {
+      case 'mortgage':
+        return `Monthly: ${formatCurrency(calc.result.monthlyPayment || 0)}`;
+      case 'roi':
+        return `Cash-on-Cash: ${((calc.result.cashOnCashReturn || 0) * 100).toFixed(2)}%`;
+      case 'capRate':
+        return `Cap Rate: ${((calc.result.capRate || 0) * 100).toFixed(2)}%`;
+      default:
+        return '';
+    }
+  };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      {error && (
-        <View style={styles.errorBanner}>
-          <Text style={styles.errorText}>{error}</Text>
-        </View>
+    <ScrollView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+      contentContainerStyle={styles.content}
+    >
+      <Text
+        variant="headlineMedium"
+        style={[styles.header, { color: theme.colors.onBackground }]}
+      >
+        Saved Calculations
+      </Text>
+
+      {loading ? (
+        <Text style={{ color: theme.colors.onBackground }}>Loading...</Text>
+      ) : calculations.length === 0 ? (
+        <Card>
+          <Text style={{ color: theme.colors.onSurfaceVariant, textAlign: 'center' }}>
+            No saved calculations yet.{'\n'}
+            Calculate something and save it!
+          </Text>
+        </Card>
+      ) : (
+        calculations.map((calc) => (
+          <Swipeable
+            key={calc.id}
+            renderRightActions={() => renderRightActions(calc)}
+          >
+            <Card style={styles.calcCard}>
+              <View style={styles.calcHeader}>
+                <Text
+                  variant="titleMedium"
+                  style={{ color: theme.colors.onSurface, fontWeight: '600' }}
+                >
+                  {calc.name || `${calc.type.charAt(0).toUpperCase() + calc.type.slice(1)} Calculation`}
+                </Text>
+                <Text
+                  variant="bodySmall"
+                  style={{ color: theme.colors.onSurfaceVariant }}
+                >
+                  {new Date(calc.createdAt).toLocaleDateString()}
+                </Text>
+              </View>
+              <Text
+                variant="bodyMedium"
+                style={{ color: theme.colors.onSurfaceVariant, marginTop: 4 }}
+              >
+                {formatCalcSummary(calc)}
+              </Text>
+            </Card>
+          </Swipeable>
+        ))
       )}
-      <FlatList
-        data={calculations}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        contentContainerStyle={styles.list}
-        refreshControl={
-          <RefreshControl refreshing={isLoading} onRefresh={refresh} />
-        }
-        ListEmptyComponent={
-          <View style={styles.empty}>
-            <Text style={[styles.emptyTitle, { color: theme.colors.onSurface }]}
-              >No saved calculations</Text>
-            <Text style={[styles.emptySubtitle, { color: theme.colors.onSurfaceVariant }]}>
-              Run a calculator and tap Save to see it here.
-            </Text>
-          </View>
-        }
-      />
-    </View>
+    </ScrollView>
   );
 }
 
@@ -151,63 +147,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  list: {
+  content: {
     padding: 16,
-    paddingBottom: 32,
+    paddingBottom: 40,
   },
-  card: {
-    borderRadius: 12,
-    marginBottom: 12,
-    padding: 16,
+  header: {
+    marginBottom: 16,
+    fontWeight: '700',
   },
-  cardContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-  },
-  cardHeader: {
-    flex: 1,
-  },
-  typeLabel: {
-    fontSize: 12,
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    marginBottom: 4,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 4,
-  },
-  date: {
-    fontSize: 13,
-  },
-  actions: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  empty: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 80,
-  },
-  emptyTitle: {
-    fontSize: 18,
-    fontWeight: '600',
+  calcCard: {
     marginBottom: 8,
   },
-  emptySubtitle: {
-    fontSize: 14,
+  calcHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  errorBanner: {
-    backgroundColor: '#ffebee',
-    padding: 12,
-    marginHorizontal: 16,
-    marginTop: 12,
-    borderRadius: 8,
+  actionsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginLeft: 8,
   },
-  errorText: {
-    color: '#c62828',
-    fontSize: 14,
+  actionButton: {
+    minHeight: 40,
+    paddingHorizontal: 12,
   },
 });

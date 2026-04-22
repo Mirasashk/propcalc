@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   useWindowDimensions,
+  Alert,
 } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useFormContext } from 'react-hook-form';
@@ -151,10 +152,32 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
     }
   }, []);
 
-  const handleSave = useCallback(() => {
-    // Placeholder — save functionality to be implemented later
-    console.log('Save calculation:', result);
-  }, [result]);
+  const handleSave = useCallback(async () => {
+    if (!result) return;
+    try {
+      const { saveCalculation } = await import('../../services/storage');
+      const { parseCurrency } = await import('../../engine/utils/currency');
+      await saveCalculation({
+        id: `mortgage-${Date.now()}`,
+        type: 'mortgage',
+        inputs: {
+          loanAmount: parseCurrency(data.loanAmount),
+          interestRate: parseFloat(data.interestRate),
+          loanTermYears: parseInt(data.loanTermYears, 10),
+          downPayment: data.downPayment ? parseCurrency(data.downPayment) : 0,
+        },
+        result: {
+          monthlyPayment: result.monthlyPayment,
+          totalInterest: result.totalInterest,
+          totalCost: result.totalCost,
+        },
+        createdAt: Date.now(),
+      });
+      Alert.alert('Saved', 'Calculation saved successfully!');
+    } catch (err) {
+      Alert.alert('Error', err instanceof Error ? err.message : 'Failed to save');
+    }
+  }, [result, data]);
 
   return (
     <ScrollView
