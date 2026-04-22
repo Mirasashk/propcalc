@@ -33,7 +33,7 @@ export async function saveCalculation(calculation: SavedCalculation): Promise<vo
     }
 
     const updated = [calculation, ...existing];
-    const serialized = JSON.stringify(updated, (key, value) => {
+    const serialized = JSON.stringify(updated, (_key, value) => {
       if (typeof value === 'number' && !Number.isFinite(value)) {
         return { __type: 'number', value: String(value) };
       }
@@ -59,7 +59,7 @@ export async function getCalculations(): Promise<SavedCalculation[]> {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
 
-    const parsed = JSON.parse(raw, (key, value) => {
+    const parsed = JSON.parse(raw, (_key, value) => {
       if (value && typeof value === 'object' && value.__type === 'number') {
         return Number(value.value);
       }
