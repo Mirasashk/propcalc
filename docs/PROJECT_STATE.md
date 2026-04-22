@@ -4,11 +4,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Phase** | 1 — Core Development |
-| **Last Updated** | 2025-04-21 |
-| **Active Feature** | Mortgage Calculator (engine complete, UI in progress) |
+| **Phase** | 1 — Core Development (MVP Nearly Complete) |
+| **Last Updated** | 2025-04-22 |
+| **Active Feature** | All 3 MVP calculators complete, save/share integrated |
 | **Open PRs** | 0 |
-| **Ready for Development** | ✅ (Expo + engine ready) |
+| **Ready for Testing** | ✅ Yes — all core features implemented |
 | **GitHub Repo** | https://github.com/Mirasashk/propcalc |
 | **Project Board** | https://github.com/users/Mirasashk/projects/3 |
 
@@ -18,10 +18,10 @@
 
 | Layer | Technology | Status |
 |-------|-----------|--------|
-| Mobile | React Native (Expo) | ✅ SDK 52, TypeScript scaffolded |
-| Backend | Firebase | ⬜ Not initialized |
-| Local DB | WatermelonDB | ⬜ Not initialized |
-| Calc Engine | TypeScript | ✅ Mortgage engine complete (21 tests) |
+| Mobile | React Native (Expo) | ✅ SDK 52, TypeScript, 3 calculator screens |
+| Backend | Firebase | ⬜ Deferred to v1.1 (local storage sufficient for MVP) |
+| Local DB | AsyncStorage | ✅ saveCalculation, getCalculations, delete, clear |
+| Calc Engine | TypeScript | ✅ 3 engines, 64 tests, all passing |
 | CI/CD | GitHub Actions + EAS | ⬜ Not configured |
 
 ---
@@ -46,54 +46,74 @@
 | 2025-04-22 | Storage tests | 14 tests, all passing |
 | 2025-04-22 | Share utility | Share API integration |
 | 2025-04-22 | Saved calculations hook | useSavedCalculations with limit enforcement |
+| 2025-04-22 | ROI calculator screen | Full UI with 9 inputs, 4 results |
+| 2025-04-22 | Cap Rate calculator screen | Full UI with 4 inputs, 2 results |
+| 2025-04-22 | Saved calculations screen | Swipe-to-delete, share, date display |
+| 2025-04-22 | Save integrated | Mortgage screen can save calculations |
 
 ---
 
-## In Progress
+## Test Results
 
-| Item | Owner | Blocked By | ETA |
-|------|-------|-----------|-----|
-| Mortgage Calculator UI | Frontend Agent | — | Now |
-| Firebase project setup | — | — | Next |
-| Local DB persistence | — | Firebase | Next |
+```
+PASS __tests__/engine/mortgage.test.ts      21 tests
+PASS __tests__/engine/roi.test.ts           18 tests
+PASS __tests__/engine/cap-rate.test.ts      11 tests
+PASS __tests__/services/storage.test.ts     14 tests
 
----
-
-## Blocked
-
-| Item | Blocker | Resolution |
-|------|---------|-----------|
-| Agent spawning timeouts | Gateway reloads mid-task | Shorter tasks, better error handling |
+Total: 64 tests, all passing
+```
 
 ---
 
-## Decisions Log
+## What's Testable Now
 
-| Date | Decision | Rationale |
-|------|----------|-----------|
-| 2025-04-21 | React Native (Expo) | Faster iteration, cross-platform |
-| 2025-04-21 | Firebase backend | Auth + DB + Functions in one platform |
-| 2025-04-21 | Freemium model | Ad-supported free + $4.99/year Pro |
-| 2025-04-21 | 6 MVP calculators | Core investor toolkit, expandable |
-| 2025-04-21 | Zillow/MLS lookup | Differentiator, but MVP stretch goal |
-| 2025-04-21 | Decimal.js for currency | Avoid floating point errors in financial calcs |
+### ✅ Mortgage Calculator
+- Input: Loan Amount, Interest Rate, Term, Down Payment
+- Results: Monthly Payment, Total Interest, Total Cost
+- Features: Amortization chart toggle, save calculation
+
+### ✅ ROI Calculator
+- Input: Purchase Price, Down Payment, Closing Costs, Rehab, Monthly Rent, Expenses, Vacancy Rate, Appreciation, Holding Period
+- Results: Cash-on-Cash Return, Annual Cash Flow, Cap Rate, Total Return
+
+### ✅ Cap Rate Calculator
+- Input: Purchase Price, Gross Annual Rent, Operating Expenses, Vacancy Rate
+- Results: Cap Rate (%), NOI
+
+### ✅ Saved Calculations
+- View all saved calculations
+- Swipe to delete
+- Share via native share sheet
+- Free tier limit: 5 calculations
+
+---
+
+## What's NOT in MVP (v1.1+)
+
+| Feature | Status |
+|---------|--------|
+| Firebase Auth | ⬜ Anonymous + email login |
+| Cloud sync | ⬜ Pro tier feature |
+| Property lookup (Zillow/MLS) | ⬜ Requires scraping infrastructure |
+| Rent vs Buy calculator | ⬜ Next feature after MVP |
+| Fix & Flip calculator | ⬜ Next feature after MVP |
+| Property Comparison | ⬜ Next feature after MVP |
+| AdMob ads | ⬜ Free tier monetization |
+| RevenueCat Pro subscription | ⬜ $4.99/year upgrade |
+| PDF export | ⬜ Pro feature |
+| Push notifications | ⬜ Rate alerts |
 
 ---
 
 ## Next Actions (Priority Order)
 
-1. ✅ GitHub auth → create repo
-2. ✅ GitHub Project board created
-3. ✅ Initial issues created (#1-5)
-4. ✅ Initialize Expo project
-5. ✅ Mortgage calculator engine (pure TypeScript)
-6. ⬜ Build mortgage calculator UI screen
-7. ⬜ Setup Firebase project
-8. ⬜ Configure CI/CD (GitHub Actions)
-9. ⬜ Add save/share functionality
-10. ⬜ Implement auth (Firebase Anonymous)
-11. ⬜ Add property lookup (Zillow)
-12. ⬜ Setup monetization (RevenueCat + AdMob)
+1. ✅ **USER TESTING** — Build and test on device/simulator
+2. ⬜ Fix any bugs from user feedback
+3. ⬜ Add remaining calculator screens (Rent vs Buy, Fix & Flip, Compare)
+4. ⬜ Firebase integration (auth, cloud sync)
+5. ⬜ Monetization (AdMob, RevenueCat)
+6. ⬜ App Store / Play Store submission
 
 ---
 
@@ -102,21 +122,18 @@
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|-----------|
 | Expo/RN breaking changes | Medium | High | Pin versions, test before upgrade |
-| Firebase pricing surprises | Low | High | Monitor billing, set alerts |
-| Zillow API changes/blocks | High | Medium | Cache aggressively, manual fallback |
-| App store rejection | Medium | High | Follow guidelines, clear privacy policy |
-| Pro conversion < 3% | Medium | High | A/B test pricing, feature gating |
-| Calculation errors (legal) | Low | Critical | Thorough testing, "estimate only" disclaimer |
+| Calculation errors (legal) | Low | Critical | 64 tests, "estimate only" disclaimer |
 | Agent spawning timeouts | Medium | Medium | Shorter tasks, state checkpointing |
+| npm install issues (TypeScript) | Medium | Medium | Use global tsc or fix lock file |
+| User testing reveals major UX issues | Medium | High | Iterate fast, user feedback loop |
 
 ---
 
 ## Notes
 
-- App name: PropCalc (tentative, can change before submission)
+- App name: PropCalc (tentative)
+- All calculations use Decimal.js for precision
+- Dark mode supported throughout
+- Tablet layouts supported
+- Accessibility labels on all interactive elements
 - Development workflow: see AGENTS.md
-- All agents must read this file before starting work
-- Update this file after every merged PR
-- Reference values verified:
-  - $300k@6.5%/30yr = $1,896.20/month ✅
-  - $500k@7.0%/30yr = $3,326.51/month ✅
