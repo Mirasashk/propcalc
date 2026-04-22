@@ -128,10 +128,8 @@ describe('storage service', () => {
     it('does nothing when id not found', async () => {
       const calcs = [makeCalc({ id: 'a' })];
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(calcs));
-      (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
       await deleteCalculation('missing');
-      const saved = JSON.parse((AsyncStorage.setItem as jest.Mock).mock.calls[0][1]);
-      expect(saved).toHaveLength(1);
+      expect(AsyncStorage.setItem).not.toHaveBeenCalled();
     });
 
     it('throws StorageError on AsyncStorage failure', async () => {

@@ -37,11 +37,15 @@
 | 2025-04-21 | GitHub repo created | https://github.com/Mirasashk/propcalc |
 | 2025-04-21 | GitHub Project board created | "PropCalc Development" |
 | 2025-04-21 | Expo project scaffolded | SDK 52, TypeScript, all deps |
-| 2025-04-21 | Mortgage calculator engine | 21 tests, all passing, Decimal.js |
+| 2025-04-21 | Mortgage calculator engine | 21 tests, all passing |
 | 2025-04-21 | UI components created | Input, Button, Card, ResultCard, AmortizationChart |
 | 2025-04-21 | Mortgage calculator screen | Full UI with form, results, chart toggle |
 | 2025-04-22 | ROI calculator engine | 18 tests, all passing |
 | 2025-04-22 | Cap Rate calculator engine | 11 tests, all passing |
+| 2025-04-22 | AsyncStorage persistence | saveCalculation, getCalculations, delete, clear |
+| 2025-04-22 | Storage tests | 14 tests, all passing |
+| 2025-04-22 | Share utility | Share API integration |
+| 2025-04-22 | Saved calculations hook | useSavedCalculations with limit enforcement |
 
 ---
 
