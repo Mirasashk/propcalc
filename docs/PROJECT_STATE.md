@@ -4,11 +4,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Phase** | 1 — Core Development (MVP Nearly Complete) |
+| **Phase** | 1 — Core Development (MVP Testable) |
 | **Last Updated** | 2025-04-22 |
-| **Active Feature** | All 3 MVP calculators complete, save/share integrated |
+| **Active Feature** | All 3 MVP calculators complete with save/share |
 | **Open PRs** | 0 |
-| **Ready for Testing** | ✅ Yes — all core features implemented |
+| **Ready for Testing** | ✅ Yes |
 | **GitHub Repo** | https://github.com/Mirasashk/propcalc |
 | **Project Board** | https://github.com/users/Mirasashk/projects/3 |
 
@@ -18,9 +18,9 @@
 
 | Layer | Technology | Status |
 |-------|-----------|--------|
-| Mobile | React Native (Expo) | ✅ SDK 52, TypeScript, 3 calculator screens |
-| Backend | Firebase | ⬜ Deferred to v1.1 (local storage sufficient for MVP) |
-| Local DB | AsyncStorage | ✅ saveCalculation, getCalculations, delete, clear |
+| Mobile | React Native (Expo) | ✅ SDK 52, 3 calculator screens |
+| Backend | Firebase | ⬜ Deferred to v1.1 |
+| Local DB | AsyncStorage | ✅ save, get, delete, clear + tests |
 | Calc Engine | TypeScript | ✅ 3 engines, 64 tests, all passing |
 | CI/CD | GitHub Actions + EAS | ⬜ Not configured |
 
@@ -32,36 +32,34 @@
 |------|------|-------|
 | 2025-04-21 | Project definition written | PROJECT_DEFINITION.md |
 | 2025-04-21 | Tech spec written | TECH_SPEC.md |
-| 2025-04-21 | Code registry template created | CODE_REGISTRY.md (empty) |
+| 2025-04-21 | Code registry template created | CODE_REGISTRY.md |
 | 2025-04-21 | Agent definitions written | AGENTS.md |
 | 2025-04-21 | GitHub repo created | https://github.com/Mirasashk/propcalc |
 | 2025-04-21 | GitHub Project board created | "PropCalc Development" |
 | 2025-04-21 | Expo project scaffolded | SDK 52, TypeScript, all deps |
-| 2025-04-21 | Mortgage calculator engine | 21 tests, all passing |
+| 2025-04-21 | Mortgage calculator engine | 21 tests |
 | 2025-04-21 | UI components created | Input, Button, Card, ResultCard, AmortizationChart |
 | 2025-04-21 | Mortgage calculator screen | Full UI with form, results, chart toggle |
-| 2025-04-22 | ROI calculator engine | 18 tests, all passing |
-| 2025-04-22 | Cap Rate calculator engine | 11 tests, all passing |
+| 2025-04-22 | ROI calculator engine | 18 tests |
+| 2025-04-22 | Cap Rate calculator engine | 11 tests |
 | 2025-04-22 | AsyncStorage persistence | saveCalculation, getCalculations, delete, clear |
-| 2025-04-22 | Storage tests | 14 tests, all passing |
+| 2025-04-22 | Storage tests | 14 tests |
 | 2025-04-22 | Share utility | Share API integration |
-| 2025-04-22 | Saved calculations hook | useSavedCalculations with limit enforcement |
 | 2025-04-22 | ROI calculator screen | Full UI with 9 inputs, 4 results |
 | 2025-04-22 | Cap Rate calculator screen | Full UI with 4 inputs, 2 results |
 | 2025-04-22 | Saved calculations screen | Swipe-to-delete, share, date display |
-| 2025-04-22 | Save integrated | Mortgage screen can save calculations |
+| 2025-04-22 | Save integrated on all screens | Mortgage, ROI, Cap Rate |
+| 2025-04-22 | Disabled unimplemented calculators | Rent vs Buy, Fix & Flip, Compare marked "Coming soon" |
 
 ---
 
-## Test Results
+## Test Results (64 passing)
 
 ```
 PASS __tests__/engine/mortgage.test.ts      21 tests
 PASS __tests__/engine/roi.test.ts           18 tests
 PASS __tests__/engine/cap-rate.test.ts      11 tests
 PASS __tests__/services/storage.test.ts     14 tests
-
-Total: 64 tests, all passing
 ```
 
 ---
@@ -71,49 +69,71 @@ Total: 64 tests, all passing
 ### ✅ Mortgage Calculator
 - Input: Loan Amount, Interest Rate, Term, Down Payment
 - Results: Monthly Payment, Total Interest, Total Cost
-- Features: Amortization chart toggle, save calculation
+- Features: Amortization chart toggle, save calculation, share
 
 ### ✅ ROI Calculator
 - Input: Purchase Price, Down Payment, Closing Costs, Rehab, Monthly Rent, Expenses, Vacancy Rate, Appreciation, Holding Period
 - Results: Cash-on-Cash Return, Annual Cash Flow, Cap Rate, Total Return
+- Features: Save, share
 
 ### ✅ Cap Rate Calculator
 - Input: Purchase Price, Gross Annual Rent, Operating Expenses, Vacancy Rate
 - Results: Cap Rate (%), NOI
+- Features: Save, share
 
 ### ✅ Saved Calculations
 - View all saved calculations
 - Swipe to delete
 - Share via native share sheet
-- Free tier limit: 5 calculations
+- Free tier limit: 5 calculations (enforced)
 
 ---
 
-## What's NOT in MVP (v1.1+)
+## Known Issues / Next Priority
 
-| Feature | Status |
-|---------|--------|
-| Firebase Auth | ⬜ Anonymous + email login |
-| Cloud sync | ⬜ Pro tier feature |
-| Property lookup (Zillow/MLS) | ⬜ Requires scraping infrastructure |
-| Rent vs Buy calculator | ⬜ Next feature after MVP |
-| Fix & Flip calculator | ⬜ Next feature after MVP |
-| Property Comparison | ⬜ Next feature after MVP |
-| AdMob ads | ⬜ Free tier monetization |
-| RevenueCat Pro subscription | ⬜ $4.99/year upgrade |
-| PDF export | ⬜ Pro feature |
-| Push notifications | ⬜ Rate alerts |
+| Issue | Priority | Action |
+|-------|----------|--------|
+| TypeScript compiler missing | Medium | Fix npm install for tsc binary |
+| Zillow/MLS property lookup | Low | v1.1 feature |
+| Firebase auth + cloud sync | Low | v1.1 feature |
+| AdMob + RevenueCat | Low | v1.1 monetization |
+| Rent vs Buy, Fix & Flip, Compare | Low | v1.1 calculators |
 
 ---
 
-## Next Actions (Priority Order)
+## How to Test
 
-1. ✅ **USER TESTING** — Build and test on device/simulator
-2. ⬜ Fix any bugs from user feedback
-3. ⬜ Add remaining calculator screens (Rent vs Buy, Fix & Flip, Compare)
-4. ⬜ Firebase integration (auth, cloud sync)
-5. ⬜ Monetization (AdMob, RevenueCat)
-6. ⬜ App Store / Play Store submission
+```bash
+git clone https://github.com/Mirasashk/propcalc.git
+cd propcalc
+npm install
+npx expo start
+# Press 'i' for iOS simulator, 'a' for Android
+```
+
+---
+
+## Decisions Log
+
+| Date | Decision | Rationale |
+|------|----------|-----------|
+| 2025-04-21 | React Native (Expo) | Faster iteration, cross-platform |
+| 2025-04-21 | Firebase backend deferred | Local storage sufficient for MVP test |
+| 2025-04-21 | Freemium model | Ad-supported free + $4.99/year Pro |
+| 2025-04-22 | AsyncStorage over WatermelonDB | Simpler, no sync complexity for MVP |
+| 2025-04-22 | Decimal.js for currency | Avoid floating point errors |
+| 2025-04-22 | Disable unimplemented calc links | Prevents crashes, clean UX |
+
+---
+
+## Next Actions (Post-User Testing)
+
+1. Await user feedback from testing
+2. Fix bugs/issues reported
+3. Add Firebase auth + cloud sync
+4. Add remaining calculators
+5. Add monetization (AdMob, RevenueCat)
+6. App Store / Play Store submission
 
 ---
 
@@ -121,11 +141,10 @@ Total: 64 tests, all passing
 
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|-----------|
-| Expo/RN breaking changes | Medium | High | Pin versions, test before upgrade |
+| User testing reveals UX issues | Medium | High | Iterate fast, short feedback loops |
+| npm install issues on fresh clone | Medium | Medium | Document exact node version |
 | Calculation errors (legal) | Low | Critical | 64 tests, "estimate only" disclaimer |
-| Agent spawning timeouts | Medium | Medium | Shorter tasks, state checkpointing |
-| npm install issues (TypeScript) | Medium | Medium | Use global tsc or fix lock file |
-| User testing reveals major UX issues | Medium | High | Iterate fast, user feedback loop |
+| Agent spawning timeouts | Medium | Medium | Doing direct edits for quick fixes |
 
 ---
 
@@ -136,4 +155,5 @@ Total: 64 tests, all passing
 - Dark mode supported throughout
 - Tablet layouts supported
 - Accessibility labels on all interactive elements
-- Development workflow: see AGENTS.md
+- Free tier limit: 5 saved calculations
+- No external API dependencies for MVP (no Firebase, no Zillow)
