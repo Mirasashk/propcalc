@@ -9,6 +9,7 @@ import {
 import { Text, useTheme } from 'react-native-paper';
 import { useFormContext } from 'react-hook-form';
 import { z } from 'zod';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Input, Button, Card } from '@components/ui';
 import { CalculatorForm, ResultCard } from '@components/calculators';
@@ -42,6 +43,33 @@ const defaultValues: ROIFormData = {
   holdingPeriodYears: '',
 };
 
+interface SectionHeaderProps {
+  icon: keyof typeof Ionicons.glyphMap;
+  title: string;
+  subtitle?: string;
+}
+
+function SectionHeader({ icon, title, subtitle }: SectionHeaderProps): React.JSX.Element {
+  const theme = useTheme();
+  return (
+    <View style={styles.sectionHeader}>
+      <View style={[styles.iconContainer, { backgroundColor: theme.colors.primaryContainer }]}>
+        <Ionicons name={icon} size={18} color={theme.colors.primary} />
+      </View>
+      <View style={styles.sectionText}>
+        <Text variant="titleMedium" style={{ color: theme.colors.onSurface, fontWeight: '600' }}>
+          {title}
+        </Text>
+        {subtitle && (
+          <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+            {subtitle}
+          </Text>
+        )}
+      </View>
+    </View>
+  );
+}
+
 interface ROIFormContentProps {
   onCalculate: (data: ROIFormData) => void;
 }
@@ -55,117 +83,154 @@ function ROIFormContent({ onCalculate }: ROIFormContentProps): React.JSX.Element
   } = useFormContext<ROIFormData>();
 
   const values = watch();
+  const theme = useTheme();
 
   return (
     <View>
-      <Input
-        label="Purchase Price"
-        value={values.purchasePrice}
-        onChangeText={(text) => setValue('purchasePrice', text, { shouldValidate: true })}
-        keyboardType="decimal-pad"
-        placeholder="e.g. 400000"
-        error={errors.purchasePrice?.message}
-        helperText="Total purchase price of the property"
-        accessibilityLabel="Purchase price input"
-        currency
+      {/* Purchase Section */}
+      <SectionHeader
+        icon="cash"
+        title="Purchase Costs"
+        subtitle="Upfront investment required"
       />
-      <Input
-        label="Down Payment"
-        value={values.downPayment}
-        onChangeText={(text) => setValue('downPayment', text, { shouldValidate: true })}
-        keyboardType="decimal-pad"
-        placeholder="e.g. 80000"
-        error={errors.downPayment?.message}
-        helperText="Amount paid upfront"
-        accessibilityLabel="Down payment input"
-        currency
+      <View style={styles.inputGrid}>
+        <View style={styles.inputHalf}>
+          <Input
+            label="Purchase Price"
+            value={values.purchasePrice}
+            onChangeText={(text) => setValue('purchasePrice', text, { shouldValidate: true })}
+            keyboardType="decimal-pad"
+            placeholder="400000"
+            error={errors.purchasePrice?.message}
+            accessibilityLabel="Purchase price input"
+            currency
+          />
+        </View>
+        <View style={styles.inputHalf}>
+          <Input
+            label="Down Payment"
+            value={values.downPayment}
+            onChangeText={(text) => setValue('downPayment', text, { shouldValidate: true })}
+            keyboardType="decimal-pad"
+            placeholder="80000"
+            error={errors.downPayment?.message}
+            accessibilityLabel="Down payment input"
+            currency
+          />
+        </View>
+      </View>
+      <View style={styles.inputGrid}>
+        <View style={styles.inputHalf}>
+          <Input
+            label="Closing Costs"
+            value={values.closingCosts}
+            onChangeText={(text) => setValue('closingCosts', text, { shouldValidate: true })}
+            keyboardType="decimal-pad"
+            placeholder="5000"
+            error={errors.closingCosts?.message}
+            accessibilityLabel="Closing costs input"
+            currency
+          />
+        </View>
+        <View style={styles.inputHalf}>
+          <Input
+            label="Rehab Costs"
+            value={values.rehabCosts}
+            onChangeText={(text) => setValue('rehabCosts', text, { shouldValidate: true })}
+            keyboardType="decimal-pad"
+            placeholder="10000"
+            error={errors.rehabCosts?.message}
+            accessibilityLabel="Rehab costs input"
+            currency
+          />
+        </View>
+      </View>
+
+      {/* Income Section */}
+      <View style={[styles.sectionDivider, { backgroundColor: theme.colors.outline }]} />
+      <SectionHeader
+        icon="trending-up"
+        title="Rental Income"
+        subtitle="Monthly cash flow estimates"
       />
-      <Input
-        label="Closing Costs"
-        value={values.closingCosts}
-        onChangeText={(text) => setValue('closingCosts', text, { shouldValidate: true })}
-        keyboardType="decimal-pad"
-        placeholder="e.g. 5000"
-        error={errors.closingCosts?.message}
-        helperText="Closing costs and fees"
-        accessibilityLabel="Closing costs input"
-        currency
+      <View style={styles.inputGrid}>
+        <View style={styles.inputHalf}>
+          <Input
+            label="Monthly Rent"
+            value={values.monthlyRent}
+            onChangeText={(text) => setValue('monthlyRent', text, { shouldValidate: true })}
+            keyboardType="decimal-pad"
+            placeholder="2500"
+            error={errors.monthlyRent?.message}
+            accessibilityLabel="Monthly rent input"
+            currency
+          />
+        </View>
+        <View style={styles.inputHalf}>
+          <Input
+            label="Monthly Expenses"
+            value={values.monthlyExpenses}
+            onChangeText={(text) => setValue('monthlyExpenses', text, { shouldValidate: true })}
+            keyboardType="decimal-pad"
+            placeholder="800"
+            error={errors.monthlyExpenses?.message}
+            accessibilityLabel="Monthly expenses input"
+            currency
+          />
+        </View>
+      </View>
+
+      {/* Projections Section */}
+      <View style={[styles.sectionDivider, { backgroundColor: theme.colors.outline }]} />
+      <SectionHeader
+        icon="calendar"
+        title="Projections"
+        subtitle="Future assumptions"
       />
-      <Input
-        label="Rehab Costs"
-        value={values.rehabCosts}
-        onChangeText={(text) => setValue('rehabCosts', text, { shouldValidate: true })}
-        keyboardType="decimal-pad"
-        placeholder="e.g. 10000"
-        error={errors.rehabCosts?.message}
-        helperText="Renovation and repair costs"
-        accessibilityLabel="Rehab costs input"
-        currency
-      />
-      <Input
-        label="Monthly Rent"
-        value={values.monthlyRent}
-        onChangeText={(text) => setValue('monthlyRent', text, { shouldValidate: true })}
-        keyboardType="decimal-pad"
-        placeholder="e.g. 2500"
-        error={errors.monthlyRent?.message}
-        helperText="Expected monthly rental income"
-        accessibilityLabel="Monthly rent input"
-        currency
-      />
-      <Input
-        label="Monthly Expenses"
-        value={values.monthlyExpenses}
-        onChangeText={(text) => setValue('monthlyExpenses', text, { shouldValidate: true })}
-        keyboardType="decimal-pad"
-        placeholder="e.g. 800"
-        error={errors.monthlyExpenses?.message}
-        helperText="Insurance, taxes, maintenance, etc."
-        accessibilityLabel="Monthly expenses input"
-        currency
-      />
-      <Input
-        label="Vacancy Rate"
-        value={values.vacancyRate}
-        onChangeText={(text) => setValue('vacancyRate', text, { shouldValidate: true })}
-        keyboardType="decimal-pad"
-        placeholder="e.g. 5"
-        error={errors.vacancyRate?.message}
-        helperText="Expected vacancy rate as a percentage"
-        accessibilityLabel="Vacancy rate input"
-        suffix="%"
-      />
-      <Input
-        label="Appreciation Rate"
-        value={values.appreciationRate ?? ''}
-        onChangeText={(text) => setValue('appreciationRate', text, { shouldValidate: true })}
-        keyboardType="decimal-pad"
-        placeholder="e.g. 3"
-        error={errors.appreciationRate?.message}
-        helperText="Expected annual appreciation (optional)"
-        accessibilityLabel="Appreciation rate input"
-        suffix="%"
-      />
+      <View style={styles.inputGrid}>
+        <View style={styles.inputHalf}>
+          <Input
+            label="Vacancy Rate"
+            value={values.vacancyRate}
+            onChangeText={(text) => setValue('vacancyRate', text, { shouldValidate: true })}
+            keyboardType="decimal-pad"
+            placeholder="5"
+            error={errors.vacancyRate?.message}
+            accessibilityLabel="Vacancy rate input"
+            suffix="%"
+          />
+        </View>
+        <View style={styles.inputHalf}>
+          <Input
+            label="Appreciation"
+            value={values.appreciationRate ?? ''}
+            onChangeText={(text) => setValue('appreciationRate', text, { shouldValidate: true })}
+            keyboardType="decimal-pad"
+            placeholder="3"
+            error={errors.appreciationRate?.message}
+            accessibilityLabel="Appreciation rate input"
+            suffix="%"
+          />
+        </View>
+      </View>
       <Input
         label="Holding Period"
         value={values.holdingPeriodYears}
         onChangeText={(text) => setValue('holdingPeriodYears', text, { shouldValidate: true })}
         keyboardType="number-pad"
-        placeholder="e.g. 5"
+        placeholder="5"
         error={errors.holdingPeriodYears?.message}
-        helperText="Years you plan to hold the property"
         accessibilityLabel="Holding period input"
         suffix="years"
       />
-      <View style={styles.buttonRow}>
-        <Button
-          title="Calculate ROI"
-          onPress={handleSubmit(onCalculate)}
-          variant="primary"
-          accessibilityLabel="Calculate ROI"
-          style={styles.calculateButton}
-        />
-      </View>
+
+      <Button
+        title="Calculate ROI"
+        onPress={handleSubmit(onCalculate)}
+        variant="primary"
+        accessibilityLabel="Calculate ROI"
+        style={styles.calculateButton}
+      />
     </View>
   );
 }
@@ -295,8 +360,14 @@ export default function ROICalculatorScreen(): React.JSX.Element {
       >
         ROI Calculator
       </Text>
+      <Text
+        variant="bodyMedium"
+        style={[styles.subheader, { color: theme.colors.onSurfaceVariant }]}
+      >
+        Calculate cash-on-cash return and cash flow
+      </Text>
 
-      <Card title="Investment Details">
+      <Card>
         <CalculatorForm
           validationSchema={roiSchema}
           defaultValues={defaultValues}
@@ -307,25 +378,20 @@ export default function ROICalculatorScreen(): React.JSX.Element {
       </Card>
 
       {error && (
-        <Text
-          style={[styles.errorText, { color: theme.colors.error }]}
-          accessibilityRole="alert"
-        >
-          {error}
-        </Text>
+        <View style={[styles.errorBanner, { backgroundColor: theme.colors.errorContainer }]}>
+          <Ionicons name="alert-circle" size={20} color={theme.colors.error} />
+          <Text style={[styles.errorText, { color: theme.colors.error }]}>
+            {error}
+          </Text>
+        </View>
       )}
 
       {result && (
         <>
-          <Card title="Results">
-            <View
-              style={[
-                styles.resultsRow,
-                isTablet && styles.resultsRowTablet,
-              ]}
-            >
+          <Card title="Investment Returns">
+            <View style={[styles.resultsGrid, isTablet && styles.resultsGridTablet]}>
               <ResultCard
-                title="Cash-on-Cash Return"
+                title="Cash-on-Cash"
                 value={result.cashOnCashReturn * 100}
                 unit="%"
                 highlight
@@ -336,8 +402,6 @@ export default function ROICalculatorScreen(): React.JSX.Element {
                 value={result.annualCashFlow}
                 accessibilityLabel={`Annual cash flow is ${formatCurrency(result.annualCashFlow)}`}
               />
-            </View>
-            <View style={[styles.resultsRow, isTablet && styles.resultsRowTablet]}>
               <ResultCard
                 title="Cap Rate"
                 value={result.capRate * 100}
@@ -382,32 +446,69 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   header: {
-    marginBottom: 16,
+    marginBottom: 4,
     fontWeight: '700',
   },
-  buttonRow: {
+  subheader: {
+    marginBottom: 20,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
     marginTop: 8,
-    marginBottom: 4,
+  },
+  iconContainer: {
+    width: 32,
+    height: 32,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  sectionText: {
+    flex: 1,
+  },
+  sectionDivider: {
+    height: 1,
+    marginVertical: 16,
+    opacity: 0.5,
+  },
+  inputGrid: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  inputHalf: {
+    flex: 1,
   },
   calculateButton: {
+    marginTop: 8,
     minHeight: 48,
   },
-  errorText: {
-    marginVertical: 12,
-    textAlign: 'center',
-  },
-  resultsRow: {
-    flexDirection: 'column',
-    gap: 8,
-    marginVertical: 8,
-  },
-  resultsRowTablet: {
+  errorBanner: {
     flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    padding: 12,
+    borderRadius: 12,
+    marginTop: 12,
+  },
+  errorText: {
+    flex: 1,
+    fontWeight: '500',
+  },
+  resultsGrid: {
+    flexDirection: 'column',
+    gap: 12,
+  },
+  resultsGridTablet: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   actionRow: {
     flexDirection: 'row',
     gap: 12,
-    marginVertical: 12,
+    marginVertical: 16,
     justifyContent: 'center',
   },
   actionButton: {

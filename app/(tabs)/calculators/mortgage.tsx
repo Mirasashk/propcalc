@@ -9,6 +9,7 @@ import {
 import { Text, useTheme } from 'react-native-paper';
 import { useFormContext } from 'react-hook-form';
 import { z } from 'zod';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Input, Button, Card } from '@components/ui';
 import { CalculatorForm, ResultCard, AmortizationChart } from '@components/calculators';
@@ -197,8 +198,14 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
       >
         Mortgage Calculator
       </Text>
+      <Text
+        variant="bodyMedium"
+        style={[styles.subheader, { color: theme.colors.onSurfaceVariant }]}
+      >
+        Estimate monthly payments and total cost
+      </Text>
 
-      <Card title="Loan Details">
+      <Card>
         <CalculatorForm
           validationSchema={mortgageSchema}
           defaultValues={defaultValues}
@@ -209,21 +216,21 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
       </Card>
 
       {error && (
-        <Text
-          style={[styles.errorText, { color: theme.colors.error }]}
-          accessibilityRole="alert"
-        >
-          {error}
-        </Text>
+        <View style={[styles.errorBanner, { backgroundColor: theme.colors.errorContainer }]}>
+          <Ionicons name="alert-circle" size={20} color={theme.colors.error} />
+          <Text style={[styles.errorText, { color: theme.colors.error }]}>
+            {error}
+          </Text>
+        </View>
       )}
 
       {result && (
         <>
-          <Card title="Results">
+          <Card title="Payment Summary">
             <View
               style={[
-                styles.resultsRow,
-                isTablet && styles.resultsRowTablet,
+                styles.resultsGrid,
+                isTablet && styles.resultsGridTablet,
               ]}
             >
               <ResultCard
@@ -237,8 +244,6 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
                 value={result.totalInterest}
                 accessibilityLabel={`Total interest is ${formatCurrency(result.totalInterest)}`}
               />
-            </View>
-            <View style={[styles.resultsRow, isTablet && styles.resultsRowTablet]}>
               <ResultCard
                 title="Total Cost"
                 value={result.totalCost}
@@ -290,32 +295,44 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   header: {
-    marginBottom: 16,
+    marginBottom: 4,
     fontWeight: '700',
+  },
+  subheader: {
+    marginBottom: 20,
   },
   buttonRow: {
     marginTop: 8,
     marginBottom: 4,
   },
   calculateButton: {
+    marginTop: 8,
     minHeight: 48,
   },
-  errorText: {
-    marginVertical: 12,
-    textAlign: 'center',
-  },
-  resultsRow: {
-    flexDirection: 'column',
-    gap: 8,
-    marginVertical: 8,
-  },
-  resultsRowTablet: {
+  errorBanner: {
     flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    padding: 12,
+    borderRadius: 12,
+    marginTop: 12,
+  },
+  errorText: {
+    flex: 1,
+    fontWeight: '500',
+  },
+  resultsGrid: {
+    flexDirection: 'column',
+    gap: 12,
+  },
+  resultsGridTablet: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   actionRow: {
     flexDirection: 'row',
     gap: 12,
-    marginVertical: 12,
+    marginVertical: 16,
     justifyContent: 'center',
   },
   actionButton: {

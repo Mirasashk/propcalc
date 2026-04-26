@@ -4,11 +4,14 @@ import {
   StyleSheet,
   ScrollView,
   Alert,
+  useWindowDimensions,
 } from 'react-native';
-import { Text, useTheme } from 'react-native-paper';
+import { Text, useTheme, IconButton } from 'react-native-paper';
 import { Swipeable } from 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 
-import { Card, Button } from '@/components/ui';
+import { Card } from '@/components/ui';
 import {
   getCalculations,
   deleteCalculation,
@@ -19,6 +22,9 @@ import { formatCurrency } from '@/engine/utils/currency';
 
 export default function SavedCalculationsScreen(): React.JSX.Element {
   const theme = useTheme();
+  const { width } = useWindowDimensions();
+  const isTablet = width >= 768;
+
   const [calculations, setCalculations] = useState<SavedCalculation[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,25 +60,23 @@ export default function SavedCalculationsScreen(): React.JSX.Element {
     }
   }, []);
 
-  const renderRightActions = useCallback(
-    (calc: SavedCalculation) => (
-      <View style={styles.actionsContainer}>
-        <Button
-          title="Share"
-          onPress={() => handleShare(calc)}
-          variant="secondary"
-          style={styles.actionButton}
-        />
-        <Button
-          title="Delete"
-          onPress={() => handleDelete(calc.id)}
-          variant="danger"
-          style={styles.actionButton}
-        />
-      </View>
-    ),
-    [handleDelete, handleShare]
-  );
+  const getCalcIcon = (type: string): keyof typeof Ionicons.glyphMap => {
+    switch (type) {
+      case 'mortgage': return 'home';
+      case 'roi': return 'cash';
+      case 'capRate': return 'trending-up';
+      default: return 'calculator';
+    }
+  };
+
+  const getCalcColor = (type: string): string => {
+    switch (type) {
+      case 'mortgage': return '#0D7377';
+      case 'roi': return '#D4A017';
+      case 'capRate': return '#2E7D32';
+      default: return theme.colors.primary;
+    }
+  };
 
   const formatCalcSummary = (calc: SavedCalculation): string => {
     switch (calc.type) {
@@ -87,10 +91,35 @@ export default function SavedCalculationsScreen(): React.JSX.Element {
     }
   };
 
+  const renderRightActions = useCallback(
+    (calc: SavedCalculation) => (
+      <View style={styles.actionsContainer}>
+        <IconButton
+          icon="share-variant"
+          size={20}
+          onPress={() => handleShare(calc)}
+          iconColor={theme.colors.primary}
+          style={[styles.actionButton, { backgroundColor: theme.colors.primaryContainer }]}
+        />
+        <IconButton
+          icon="delete"
+          size={20}
+          onPress={() => handleDelete(calc.id)}
+          iconColor={theme.colors.error}
+          style={[styles.actionButton, { backgroundColor: theme.colors.errorContainer }]}
+        />
+      </View>
+    ),
+    [handleDelete, handleShare, theme]
+  );
+
   return (
     <ScrollView
       style={[styles.container, { backgroundColor: theme.colors.background }]}
-      contentContainerStyle={styles.content}
+      contentContainerStyle={[
+        styles.content,
+        isTablet && styles.contentTablet,
+      ]}
     >
       <Text
         variant="headlineMedium"
@@ -98,45 +127,93 @@ export default function SavedCalculationsScreen(): React.JSX.Element {
       >
         Saved Calculations
       </Text>
+      <Text
+        variant="bodyMedium"
+        style={[styles.subheader, { color: theme.colors.onSurfaceVariant }]}
+      >
+        {calculations.length > 0
+          ? `${calculations.length} calculation${calculations.length !== 1 ? 's' : ''} saved`
+          : 'Your saved calculations appear here'}
+      </Text>
 
       {loading ? (
-        <Text style={{ color: theme.colors.onBackground }}>Loading...</Text>
+        <Card>
+          <View style={styles.loadingContainer}>
+            <Ionicons name="refresh" size={32} color={theme.colors.onSurfaceVariant} />
+            <Text style={{ color: theme.colors.onSurfaceVariant, marginTop: 12 }}>
+              Loading calculations...
+            </Text>
+          </View>
+        </Card>
       ) : calculations.length === 0 ? (
         <Card>
-          <Text style={{ color: theme.colors.onSurfaceVariant, textAlign: 'center' }}>
-            No saved calculations yet.{'\n'}
-            Calculate something and save it!
-          </Text>
+          <View style={styles.emptyContainer}>
+            <View style={[styles.emptyIconContainer, { backgroundColor: theme.colors.primaryContainer }]}>
+              <Ionicons name="bookmark-outline" size={40} color={theme.colors.primary} />
+            </View>
+            <Text
+              variant="titleLarge"
+              style={{ color: theme.colors.onSurface, marginTop: 16, fontWeight: '600' }}
+            >
+              No saved calculations
+            </Text>
+            <Text
+              variant="bodyMedium"
+              style={{ color: theme.colors.onSurfaceVariant, marginTop: 8, textAlign: 'center' }}
+            >
+              Calculate something and save it to see it here
+            </Text>
+          </View>
         </Card>
       ) : (
-        calculations.map((calc) => (
-          <Swipeable
+        calculations.map((calc, index) => (
+          <Animated.View
             key={calc.id}
-            renderRightActions={() => renderRightActions(calc)}
+            entering={FadeInUp.delay(index * 50).duration(300)}
           >
-            <Card style={styles.calcCard}>
-              <View style={styles.calcHeader}>
-                <Text
-                  variant="titleMedium"
-                  style={{ color: theme.colors.onSurface, fontWeight: '600' }}
-                >
-                  {calc.name || `${calc.type.charAt(0).toUpperCase() + calc.type.slice(1)} Calculation`}
-                </Text>
-                <Text
-                  variant="bodySmall"
-                  style={{ color: theme.colors.onSurfaceVariant }}
-                >
-                  {new Date(calc.createdAt).toLocaleDateString()}
-                </Text>
-              </View>
-              <Text
-                variant="bodyMedium"
-                style={{ color: theme.colors.onSurfaceVariant, marginTop: 4 }}
-              >
-                {formatCalcSummary(calc)}
-              </Text>
-            </Card>
-          </Swipeable>
+            <Swipeable
+              renderRightActions={() => renderRightActions(calc)}
+              friction={2}
+            >
+              <Card style={styles.calcCard}>
+                <View style={styles.calcRow}>
+                  <View style={[styles.calcIconContainer, { backgroundColor: getCalcColor(calc.type) + '15' }]}>
+                    <Ionicons
+                      name={getCalcIcon(calc.type)}
+                      size={22}
+                      color={getCalcColor(calc.type)}
+                    />
+                  </View>
+                  <View style={styles.calcInfo}>
+                    <View style={styles.calcHeader}>
+                      <Text
+                        variant="titleMedium"
+                        style={{ color: theme.colors.onSurface, fontWeight: '600' }}
+                      >
+                        {calc.name || `${calc.type.charAt(0).toUpperCase() + calc.type.slice(1)} Calculation`}
+                      </Text>
+                      <Text
+                        variant="bodySmall"
+                        style={{ color: theme.colors.onSurfaceVariant }}
+                      >
+                        {new Date(calc.createdAt).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        })}
+                      </Text>
+                    </View>
+                    <Text
+                      variant="bodyMedium"
+                      style={{ color: theme.colors.primary, marginTop: 4, fontWeight: '500' }}
+                    >
+                      {formatCalcSummary(calc)}
+                    </Text>
+                  </View>
+                </View>
+              </Card>
+            </Swipeable>
+          </Animated.View>
         ))
       )}
     </ScrollView>
@@ -151,12 +228,51 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 40,
   },
+  contentTablet: {
+    paddingHorizontal: 64,
+    maxWidth: 900,
+    alignSelf: 'center',
+    width: '100%',
+  },
   header: {
-    marginBottom: 16,
+    marginBottom: 4,
     fontWeight: '700',
+  },
+  subheader: {
+    marginBottom: 20,
+  },
+  loadingContainer: {
+    padding: 40,
+    alignItems: 'center',
+  },
+  emptyContainer: {
+    padding: 40,
+    alignItems: 'center',
+  },
+  emptyIconContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   calcCard: {
     marginBottom: 8,
+  },
+  calcRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  calcIconContainer: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  calcInfo: {
+    flex: 1,
   },
   calcHeader: {
     flexDirection: 'row',
@@ -170,7 +286,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   actionButton: {
-    minHeight: 40,
-    paddingHorizontal: 12,
+    margin: 0,
+    borderRadius: 10,
   },
 });

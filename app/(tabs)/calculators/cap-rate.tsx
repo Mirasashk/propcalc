@@ -9,6 +9,7 @@ import {
 import { Text, useTheme } from 'react-native-paper';
 import { useFormContext } from 'react-hook-form';
 import { z } from 'zod';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Input, Button, Card } from '@components/ui';
 import { CalculatorForm, ResultCard } from '@components/calculators';
@@ -92,15 +93,13 @@ function CapRateFormContent({ onCalculate }: CapRateFormContentProps): React.JSX
         accessibilityLabel="Vacancy rate input"
         suffix="%"
       />
-      <View style={styles.buttonRow}>
-        <Button
-          title="Calculate Cap Rate"
-          onPress={handleSubmit(onCalculate)}
-          variant="primary"
-          accessibilityLabel="Calculate cap rate"
-          style={styles.calculateButton}
-        />
-      </View>
+      <Button
+        title="Calculate Cap Rate"
+        onPress={handleSubmit(onCalculate)}
+        variant="primary"
+        accessibilityLabel="Calculate cap rate"
+        style={styles.calculateButton}
+      />
     </View>
   );
 }
@@ -195,8 +194,14 @@ export default function CapRateCalculatorScreen(): React.JSX.Element {
       >
         Cap Rate Calculator
       </Text>
+      <Text
+        variant="bodyMedium"
+        style={[styles.subheader, { color: theme.colors.onSurfaceVariant }]}
+      >
+        Evaluate property profitability
+      </Text>
 
-      <Card title="Property Details">
+      <Card>
         <CalculatorForm
           validationSchema={capRateSchema}
           defaultValues={defaultValues}
@@ -207,23 +212,18 @@ export default function CapRateCalculatorScreen(): React.JSX.Element {
       </Card>
 
       {error && (
-        <Text
-          style={[styles.errorText, { color: theme.colors.error }]}
-          accessibilityRole="alert"
-        >
-          {error}
-        </Text>
+        <View style={[styles.errorBanner, { backgroundColor: theme.colors.errorContainer }]}>
+          <Ionicons name="alert-circle" size={20} color={theme.colors.error} />
+          <Text style={[styles.errorText, { color: theme.colors.error }]}>
+            {error}
+          </Text>
+        </View>
       )}
 
       {result && (
         <>
-          <Card title="Results">
-            <View
-              style={[
-                styles.resultsRow,
-                isTablet && styles.resultsRowTablet,
-              ]}
-            >
+          <Card title="Property Analysis">
+            <View style={[styles.resultsGrid, isTablet && styles.resultsGridTablet]}>
               <ResultCard
                 title="Cap Rate"
                 value={result.capRate * 100}
@@ -232,10 +232,46 @@ export default function CapRateCalculatorScreen(): React.JSX.Element {
                 accessibilityLabel={`Cap rate is ${(result.capRate * 100).toFixed(2)}%`}
               />
               <ResultCard
-                title="NOI"
+                title="Net Operating Income"
                 value={result.noi}
                 accessibilityLabel={`Net operating income is ${formatCurrency(result.noi)}`}
               />
+            </View>
+
+            {/* Cap Rate Gauge */}
+            <View style={styles.gaugeContainer}>
+              <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant, marginBottom: 8 }}>
+                Cap Rate Benchmark
+              </Text>
+              <View style={styles.gaugeBar}>
+                <View style={[styles.gaugeTrack, { backgroundColor: theme.colors.surfaceVariant }]}>
+                  <View
+                    style={[
+                      styles.gaugeFill,
+                      {
+                        backgroundColor: result.capRate >= 0.08
+                          ? theme.colors.primary
+                          : result.capRate >= 0.06
+                          ? theme.colors.secondary
+                          : theme.colors.error,
+                        width: `${Math.min(result.capRate * 100 * 10, 100)}%`,
+                      },
+                    ]}
+                  />
+                </View>
+                <View style={styles.gaugeLabels}>
+                  <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>0%</Text>
+                  <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>5%</Text>
+                  <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>10%</Text>
+                </View>
+              </View>
+              <Text variant="bodySmall" style={[styles.gaugeHint, { color: theme.colors.onSurfaceVariant }]}>
+                {result.capRate >= 0.08
+                  ? 'Excellent — Strong cash flow potential'
+                  : result.capRate >= 0.06
+                  ? 'Good — Solid investment opportunity'
+                  : 'Caution — Review cash flow carefully'}
+              </Text>
             </View>
           </Card>
 
@@ -269,32 +305,66 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   header: {
-    marginBottom: 16,
+    marginBottom: 4,
     fontWeight: '700',
   },
-  buttonRow: {
-    marginTop: 8,
-    marginBottom: 4,
+  subheader: {
+    marginBottom: 20,
   },
   calculateButton: {
+    marginTop: 8,
     minHeight: 48,
   },
-  errorText: {
-    marginVertical: 12,
-    textAlign: 'center',
-  },
-  resultsRow: {
-    flexDirection: 'column',
+  errorBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
+    padding: 12,
+    borderRadius: 12,
+    marginTop: 12,
+  },
+  errorText: {
+    flex: 1,
+    fontWeight: '500',
+  },
+  resultsGrid: {
+    flexDirection: 'column',
+    gap: 12,
+  },
+  resultsGridTablet: {
+    flexDirection: 'row',
+  },
+  gaugeContainer: {
+    marginTop: 20,
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(0,0,0,0.05)',
+  },
+  gaugeBar: {
     marginVertical: 8,
   },
-  resultsRowTablet: {
+  gaugeTrack: {
+    height: 12,
+    borderRadius: 6,
+    overflow: 'hidden',
+  },
+  gaugeFill: {
+    height: '100%',
+    borderRadius: 6,
+  },
+  gaugeLabels: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 4,
+  },
+  gaugeHint: {
+    marginTop: 8,
+    fontStyle: 'italic',
   },
   actionRow: {
     flexDirection: 'row',
     gap: 12,
-    marginVertical: 12,
+    marginVertical: 16,
     justifyContent: 'center',
   },
   actionButton: {
