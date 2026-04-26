@@ -1,4 +1,4 @@
-import Share from 'react-native-share';
+import { Share } from 'react-native';
 import { SavedCalculation } from '../types/saved';
 
 export class ShareError extends Error {
@@ -78,13 +78,13 @@ export function buildShareText(calculation: SavedCalculation): string {
 export async function shareCalculation(calculation: SavedCalculation): Promise<void> {
   try {
     const message = buildShareText(calculation);
-    await Share.open({
+    await Share.share({
       message,
       title: calculation.name ?? `${calculation.type.toUpperCase()} Calculation`,
     });
   } catch (err) {
-    // User cancelling the share sheet throws an error from react-native-share
-    if (err instanceof Error && err.message?.includes('cancel')) {
+    // User cancelling the native share sheet should be a no-op.
+    if (err instanceof Error && err.message.toLowerCase().includes('cancel')) {
       return;
     }
     throw new ShareError(

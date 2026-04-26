@@ -8,14 +8,14 @@ import {
 import { Text, useTheme } from 'react-native-paper';
 import { Swipeable } from 'react-native-gesture-handler';
 
-import { Card, Button } from '../components/ui';
+import { Card, Button } from '@/components/ui';
 import {
   getCalculations,
   deleteCalculation,
   SavedCalculation,
-} from '../services/storage';
-import { shareCalculation } from '../utils/share';
-import { formatCurrency } from '../engine/utils/currency';
+} from '@/services/storage';
+import { shareCalculation } from '@/utils/share';
+import { formatCurrency } from '@/engine/utils/currency';
 
 export default function SavedCalculationsScreen(): React.JSX.Element {
   const theme = useTheme();
