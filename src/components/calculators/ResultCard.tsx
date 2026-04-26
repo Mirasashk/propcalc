@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     minHeight: 80,
     justifyContent: 'center',
     flex: 1,
-    marginHorizontal: 4,
   },
   title: {
     marginBottom: 4,

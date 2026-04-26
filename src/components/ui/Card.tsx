@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import { Card as PaperCard, useTheme } from 'react-native-paper';
+import { StyleSheet, StyleProp, ViewStyle, View } from 'react-native';
+import { Text, useTheme } from 'react-native-paper';
 
 interface CardProps {
   title?: string;
@@ -18,34 +18,54 @@ export const Card = React.memo(function Card({
   const theme = useTheme();
 
   return (
-    <PaperCard
+    <View
       style={[
-        styles.card,
-        { backgroundColor: theme.colors.surfaceVariant },
+        styles.wrapper,
+        {
+          backgroundColor: theme.colors.surface,
+          borderColor: theme.colors.outline,
+          shadowColor: theme.colors.shadow,
+        },
         style,
       ]}
-      accessibilityLabel={title}
     >
       {title && (
-        <PaperCard.Title
-          title={title}
-          titleStyle={[styles.title, { color: theme.colors.onSurface }]}
-        />
+        <View style={styles.titleContainer}>
+          <Text
+            variant="headlineMedium"
+            style={[styles.title, { color: theme.colors.onSurface }]}
+          >
+            {title}
+          </Text>
+        </View>
       )}
-      <PaperCard.Content style={contentStyle}>
+      <View style={[styles.content, contentStyle]}>
         {children}
-      </PaperCard.Content>
-    </PaperCard>
+      </View>
+    </View>
   );
 });
 
 const styles = StyleSheet.create({
-  card: {
+  wrapper: {
     marginVertical: 8,
-    borderRadius: 12,
+    borderRadius: 16,
+    borderWidth: 1,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  titleContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
   },
   title: {
-    fontSize: 18,
     fontWeight: '600',
+  },
+  content: {
+    paddingHorizontal: 16,
+    paddingBottom: 16,
   },
 });

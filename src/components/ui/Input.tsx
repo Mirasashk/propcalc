@@ -91,12 +91,18 @@ export const Input = React.memo(function Input({
           styles.input,
           { backgroundColor: theme.colors.surface },
         ]}
-        outlineColor={theme.colors.outline}
-        activeOutlineColor={theme.colors.primary}
+        outlineColor={error ? theme.colors.error : theme.colors.outline}
+        activeOutlineColor={error ? theme.colors.error : theme.colors.primary}
+        textColor={theme.colors.onSurface}
+        placeholderTextColor={theme.colors.onSurfaceVariant}
         right={suffix ? <TextInput.Affix text={` ${suffix}`} /> : undefined}
       />
       {(error || helperText) && (
-        <HelperText type={error ? 'error' : 'info'} visible={!!error || !!helperText}>
+        <HelperText
+          type={error ? 'error' : 'info'}
+          visible={!!error || !!helperText}
+          style={{ color: error ? theme.colors.error : theme.colors.onSurfaceVariant }}
+        >
           {error || helperText}
         </HelperText>
       )}
