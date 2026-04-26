@@ -25,7 +25,7 @@ function makeCalc(overrides?: Partial<SavedCalculation>): SavedCalculation {
     result: { monthlyPayment: 1896.2, totalInterest: 382631.2, totalCost: 682631.2, amortizationSchedule: [] },
     createdAt: Date.now(),
     ...overrides,
-  };
+  } as SavedCalculation;
 }
 
 describe('storage service', () => {

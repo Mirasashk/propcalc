@@ -250,8 +250,8 @@ export default function ROICalculatorScreen(): React.JSX.Element {
   const handleSave = useCallback(async () => {
     if (!result || !savedInputs) return;
     try {
-      const { saveCalculation } = await import('../../services/storage');
-      const { parseCurrency } = await import('../../engine/utils/currency');
+      const { saveCalculation } = await import('@/services/storage');
+      const { parseCurrency } = await import('@/engine/utils/currency');
       await saveCalculation({
         id: `roi-${Date.now()}`,
         type: 'roi',

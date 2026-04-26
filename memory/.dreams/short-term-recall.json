@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-22T04:25:10.983Z",
+  "updatedAt": "2026-04-26T03:03:00.091Z",
   "entries": {
     "memory:memory/.dreams/session-corpus/2026-04-21.txt:1:1": {
       "key": "memory:memory/.dreams/session-corpus/2026-04-21.txt:1:1",
@@ -2832,6 +2832,1564 @@
         "mortgage",
         "calculator",
         "done"
+      ]
+    },
+    "memory:memory/2026-04-22.md:283:286": {
+      "key": "memory:memory/2026-04-22.md:283:286",
+      "path": "memory/2026-04-22.md",
+      "startLine": 283,
+      "endLine": 286,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 50 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-21.txt:5-5, memory/.dreams/session-corpus/2026-04-21.txt:7-7, memory/.dreams/session-corpus/2026-04-21.txt:8-8; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "7b7a9134bc2c"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-25",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "1.00",
+        "5-5",
+        "7-7",
+        "8-8",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-22.md:287:290": {
+      "key": "memory:memory/2026-04-22.md:287:290",
+      "path": "memory/2026-04-22.md",
+      "startLine": 287,
+      "endLine": 290,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `user` kept surfacing across 41 memories.; confidence: 0.90; evidence: memory/.dreams/session-corpus/2026-04-21.txt:1-1, memory/.dreams/session-corpus/2026-04-21.txt:2-2, memory/.dreams/session-corpus/2026-04-21.txt:3-3; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "7b7a9134bc2c"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-25",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "0.90",
+        "1-1",
+        "2-2",
+        "3-3",
+        "reflections",
+        "theme",
+        "user",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-22.md:293:293": {
+      "key": "memory:memory/2026-04-22.md:293:293",
+      "path": "memory/2026-04-22.md",
+      "startLine": 293,
+      "endLine": 293,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "7b7a9134bc2c"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-25",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:1:1": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:1:1",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 1,
+      "endLine": 1,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 15:50 UTC] [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status. [Subagent Task]: You are the BACKEND AGENT for PropCalc. ## CRITICAL: FOCUSED TASK Implement ONLY the AsyncStorage",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "1/1",
+        "auto-announce",
+        "busy-poll",
+        "user",
+        "wed",
+        "utc",
+        "subagent",
+        "context"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:2:2": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:2:2",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 2,
+      "endLine": 2,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 15:43 UTC] [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status. [Subagent Task]: You are the BACKEND AGENT for PropCalc. ## MISSION Implement local data persistence using AsyncSto",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "1/1",
+        "auto-announce",
+        "busy-poll",
+        "user",
+        "wed",
+        "utc",
+        "subagent",
+        "context"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:3:3": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:3:3",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 3,
+      "endLine": 3,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 15:43 UTC] [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status. [Subagent Task]: You are the CALCULATION ENGINE AGENT for PropCalc. ## MISSION Implement ROI (Cash-on-Cash) and Cap",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "1/1",
+        "auto-announce",
+        "busy-poll",
+        "cash-on-cash",
+        "user",
+        "wed",
+        "utc",
+        "subagent"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:4:4": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:4:4",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 4,
+      "endLine": 4,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-control-ui\", \"id\": \"openclaw-control-ui\" } ``` [Wed 2026-04-22 15:42 UTC] From now make all the recommended decisions and let me know when the app is testable. I will then build it test it and provide feedback. Make",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "openclaw-control-ui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "control"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:5:5": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:5:5",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 5,
+      "endLine": 5,
+      "source": "memory",
+      "snippet": "Assistant: Got it. Making decisions, building autonomously. You'll know when it's testable. --- ## DECISIONS MADE (React Native Dev Perspective) | Decision | Rationale | |----------|-----------| | **AsyncStorage over WatermelonDB** | For MVP, AsyncStorage is sufficient. Watermelo",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "assistant",
+        "got",
+        "making",
+        "decisions",
+        "building",
+        "autonomously",
+        "you'll",
+        "know"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:6:6": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:6:6",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 6,
+      "endLine": 6,
+      "source": "memory",
+      "snippet": "Assistant: Two agents spawned: 1. **Backend Agent** — AsyncStorage persistence + save/share functionality 2. **Calc Engine Agent** — ROI + Cap Rate engines with tests Both running in parallel. I'll spawn the **Frontend Agent** next (after these complete) to build the ROI and Cap",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "save/share",
+        "assistant",
+        "two",
+        "agents",
+        "spawned",
+        "backend",
+        "asyncstorage",
+        "persistence"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:7:7": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:7:7",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 7,
+      "endLine": 7,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /home/node/.openclaw/workspace/HEARTBEAT.md (exact case).",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "home/node",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:8:8": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:8:8",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 8,
+      "endLine": 8,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:9:9": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:9:9",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 9,
+      "endLine": 9,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 15:48 UTC] <<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>> OpenClaw runtime context (internal): This context is runtime-generated, not user-authored. Keep internal details private. [Internal task completion event] source: subagent session_key: agent:…58ac session_id:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "begin-openclaw-internal-context",
+        "runtime-generated",
+        "user-authored",
+        "session-key",
+        "session-id",
+        "user",
+        "wed",
+        "utc"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:10:10": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:10:10",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 10,
+      "endLine": 10,
+      "source": "memory",
+      "snippet": "Assistant: Backend agent timed out. Respawned with simpler, focused instructions. Also waiting on: - **Calc Engine Agent** — ROI + Cap Rate engines **Yielding until agents report back.**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "assistant",
+        "backend",
+        "timed",
+        "out",
+        "respawned",
+        "simpler",
+        "focused",
+        "instructions"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:11:11": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:11:11",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 11,
+      "endLine": 11,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 15:48 UTC] <<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>> OpenClaw runtime context (internal): This context is runtime-generated, not user-authored. Keep internal details private. [Internal task completion event] source: subagent session_key: agent:…5b2c session_id:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "begin-openclaw-internal-context",
+        "runtime-generated",
+        "user-authored",
+        "session-key",
+        "session-id",
+        "user",
+        "wed",
+        "utc"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:12:12": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:12:12",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 12,
+      "endLine": 12,
+      "source": "memory",
+      "snippet": "Assistant: Files were created. Let me verify and commit what's there, then respawn with smaller tasks.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "assistant",
+        "created",
+        "let",
+        "verify",
+        "commit",
+        "what's",
+        "respawn",
+        "smaller"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:13:13": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:13:13",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 13,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "Assistant: All 50 tests pass across 3 engines. Committing now.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "assistant",
+        "all",
+        "tests",
+        "pass",
+        "across",
+        "engines",
+        "committing",
+        "now"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:14:14": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:14:14",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 14,
+      "endLine": 14,
+      "source": "memory",
+      "snippet": "Assistant: **64 tests passing across 4 suites. All green.**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "assistant",
+        "tests",
+        "passing",
+        "across",
+        "suites",
+        "all",
+        "green"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:15:15": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:15:15",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 15,
+      "endLine": 15,
+      "source": "memory",
+      "snippet": "Assistant: Both calculator screens are complete. Now building the saved calculations screen and integrating save functionality.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "assistant",
+        "both",
+        "calculator",
+        "screens",
+        "complete",
+        "now",
+        "building",
+        "the"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:16:16": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:16:16",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 16,
+      "endLine": 16,
+      "source": "memory",
+      "snippet": "Assistant: --- ## ✅ PROP IS TESTABLE NOW **Repo:** https://github.com/Mirasashk/propcalc ### What's Working | Feature | Status | |---------|--------| | **Mortgage Calculator** | ✅ Full UI + amortization chart | | **ROI Calculator** | ✅ 9 inputs, 4 results | | **Cap Rate Calculato",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "github.com/mirasashk/propcalc",
+        "assistant",
+        "prop",
+        "testable",
+        "now",
+        "repo",
+        "https",
+        "github.com"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:17:17": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:17:17",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 17,
+      "endLine": 17,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 15:55 UTC] <<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>> OpenClaw runtime context (internal): This context is runtime-generated, not user-authored. Keep internal details private. [Internal task completion event] source: subagent session_key: agent:…40f6 session_id:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "begin-openclaw-internal-context",
+        "runtime-generated",
+        "user-authored",
+        "session-key",
+        "session-id",
+        "user",
+        "wed",
+        "utc"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:18:18": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:18:18",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 18,
+      "endLine": 18,
+      "source": "memory",
+      "snippet": "Assistant: Minor TypeScript warning fixed. Repo is clean. **PropCalc is ready for you to build and test.** Clone, `npm install`, `npx expo start`. Let me know what breaks or what feels wrong.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "assistant",
+        "minor",
+        "typescript",
+        "warning",
+        "fixed",
+        "repo",
+        "clean",
+        "propcalc"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:19:19": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:19:19",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 19,
+      "endLine": 19,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 15:55 UTC] <<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>> OpenClaw runtime context (internal): This context is runtime-generated, not user-authored. Keep internal details private. [Internal task completion event] source: subagent session_key: agent:…5b2c session_id:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "begin-openclaw-internal-context",
+        "runtime-generated",
+        "user-authored",
+        "session-key",
+        "session-id",
+        "user",
+        "wed",
+        "utc"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:20:20": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:20:20",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 20,
+      "endLine": 20,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:21:21": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:21:21",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 21,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 16:02 UTC] <<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>> OpenClaw runtime context (internal): This context is runtime-generated, not user-authored. Keep internal details private. [Internal task completion event] source: subagent session_key: agent:…40f6 session_id:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "begin-openclaw-internal-context",
+        "runtime-generated",
+        "user-authored",
+        "session-key",
+        "session-id",
+        "user",
+        "wed",
+        "utc"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:22:22": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:22:22",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 22,
+      "endLine": 22,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:23:23": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:23:23",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 23,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 16:09 UTC] <<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>> OpenClaw runtime context (internal): This context is runtime-generated, not user-authored. Keep internal details private. [Internal task completion event] source: subagent session_key: agent:…b541 session_id:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "begin-openclaw-internal-context",
+        "runtime-generated",
+        "user-authored",
+        "session-key",
+        "session-id",
+        "user",
+        "wed",
+        "utc"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:24:24": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:24:24",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 24,
+      "endLine": 24,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:25:25": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:25:25",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 25,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 16:16 UTC] <<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>> OpenClaw runtime context (internal): This context is runtime-generated, not user-authored. Keep internal details private. [Internal task completion event] source: subagent session_key: agent:…b541 session_id:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "begin-openclaw-internal-context",
+        "runtime-generated",
+        "user-authored",
+        "session-key",
+        "session-id",
+        "user",
+        "wed",
+        "utc"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:26:26": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:26:26",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 26,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "User: [Wed 2026-04-22 16:03 UTC] [Subagent Context] You are running as a subagent (depth 1/1). Results auto-announce to your requester; do not busy-poll for status. [Subagent Task]: You are the FRONTEND AGENT for PropCalc. ## MISSION Build the ROI and Cap Rate calculator screens.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "1/1",
+        "auto-announce",
+        "busy-poll",
+        "user",
+        "wed",
+        "utc",
+        "subagent",
+        "context"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:27:27": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:27:27",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 27,
+      "endLine": 27,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:28:28": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:28:28",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 28,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "User: System (untrusted): [2026-04-22 15:55:06 UTC] Exec completed (grand-ri, code 0) :: may be purchased (at exorbitant rates) by contacting i@izs.me added 1026 packages, and audited 1027 packages in 33s 91 packages are looking for funding run `npm fund` for details … System (un",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "grand-ri",
+        "izs.me",
+        "user",
+        "system",
+        "untrusted",
+        "utc",
+        "exec",
+        "completed"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:29:29": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:29:29",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 29,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:30:30": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:30:30",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 30,
+      "endLine": 30,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /home/node/.openclaw/workspace/HEARTBEAT.md (exact case).",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "home/node",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:31:31": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:31:31",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 31,
+      "endLine": 31,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:32:32": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:32:32",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 32,
+      "endLine": 32,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /home/node/.openclaw/workspace/HEARTBEAT.md (exact case).",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "home/node",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:33:33": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:33:33",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 33,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:34:34": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:34:34",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 34,
+      "endLine": 34,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-control-ui\", \"id\": \"openclaw-control-ui\" } ``` [Wed 2026-04-22 16:24 UTC] Any update ?",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "openclaw-control-ui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "control"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:35:35": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:35:35",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 35,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "Assistant: **Status: MVP is testable now.** --- ## ✅ WHAT'S DONE **3 Calculator Engines — 64 tests passing** - Mortgage: $300k@6.5%/30yr = **$1,896.20/month** ✅ - ROI: Cash-on-cash, cap rate, total return - Cap Rate: NOI, vacancy-adjusted **3 Calculator Screens** - Mortgage: Full",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "6.5",
+        "896.20/month",
+        "cash-on-cash",
+        "vacancy-adjusted",
+        "assistant",
+        "status",
+        "mvp",
+        "testable"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:36:36": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:36:36",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 36,
+      "endLine": 36,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-control-ui\", \"id\": \"openclaw-control-ui\" } ``` [Wed 2026-04-22 16:28 UTC] Keep going on what is recommended, let me know if I need to take an action. but this is your show make the recommended decisions and let me kn",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "openclaw-control-ui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "control"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:37:37": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:37:37",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 37,
+      "endLine": 37,
+      "source": "memory",
+      "snippet": "Assistant: Decisions made: 1. **Fix TypeScript compiler** — blocking type checking 2. **Disable unimplemented calculators** — prevents crashes 3. **Wire save on all screens** — consistent UX 4. **Add path alias resolver** — Metro needs this for `@components/*` imports Doing these",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "assistant",
+        "decisions",
+        "made",
+        "fix",
+        "typescript",
+        "compiler",
+        "blocking",
+        "type"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-22.txt:38:38": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-22.txt:38:38",
+      "path": "memory/.dreams/session-corpus/2026-04-22.txt",
+      "startLine": 38,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "Assistant: --- ## ✅ PROP IS READY FOR TESTING **Repo:** https://github.com/Mirasashk/propcalc **Latest commit:** `c78dd24` — MVP testable release --- ## WHAT'S BUILT | Feature | Status | |---------|--------| | **Mortgage Calculator** | ✅ Full UI + amortization chart + save + shar",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-23T03:00:01.860Z",
+      "lastRecalledAt": "2026-04-23T03:00:01.860Z",
+      "queryHashes": [
+        "a1f7c25a87a0"
+      ],
+      "recallDays": [
+        "2026-04-22",
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "github.com/mirasashk/propcalc",
+        "assistant",
+        "prop",
+        "ready",
+        "testing",
+        "repo",
+        "https",
+        "github.com"
+      ]
+    },
+    "memory:memory/2026-04-23.md:458:461": {
+      "key": "memory:memory/2026-04-23.md:458:461",
+      "path": "memory/2026-04-23.md",
+      "startLine": 458,
+      "endLine": 461,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 71 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-21.txt:5-5, memory/.dreams/session-corpus/2026-04-21.txt:7-7, memory/.dreams/session-corpus/2026-04-21.txt:8-8; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-24T03:00:03.492Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "b7fd25b71b44"
+      ],
+      "recallDays": [
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "1.00",
+        "5-5",
+        "7-7",
+        "8-8",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-23.md:462:465": {
+      "key": "memory:memory/2026-04-23.md:462:465",
+      "path": "memory/2026-04-23.md",
+      "startLine": 462,
+      "endLine": 465,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `user` kept surfacing across 60 memories.; confidence: 0.91; evidence: memory/.dreams/session-corpus/2026-04-21.txt:1-1, memory/.dreams/session-corpus/2026-04-21.txt:2-2, memory/.dreams/session-corpus/2026-04-21.txt:3-3; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-24T03:00:03.492Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "b7fd25b71b44"
+      ],
+      "recallDays": [
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "0.91",
+        "1-1",
+        "2-2",
+        "3-3",
+        "reflections",
+        "theme",
+        "user",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-23.md:468:470": {
+      "key": "memory:memory/2026-04-23.md:468:470",
+      "path": "memory/2026-04-23.md",
+      "startLine": 468,
+      "endLine": 470,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: Assistant: **Mortgage calculator UI is done. All committed and pushed.** --- ## ✅ WHAT'S BUILT **Engine (backend logic):** - `src/engine/mortgage.ts` — Pure TypeScript, Decimal.js precision - `__tests__/engine/mortgage.test.ts` — 21 tests, all passing - *",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-24T03:00:03.492Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "b7fd25b71b44"
+      ],
+      "recallDays": [
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "src/engine/mortgage.ts",
+        "decimal.js",
+        "engine/mortgage.test.ts",
+        "possible",
+        "lasting",
+        "truths",
+        "assistant",
+        "mortgage"
+      ]
+    },
+    "memory:memory/2026-04-24.md:443:446": {
+      "key": "memory:memory/2026-04-24.md:443:446",
+      "path": "memory/2026-04-24.md",
+      "startLine": 443,
+      "endLine": 446,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 73 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-21.txt:5-5, memory/.dreams/session-corpus/2026-04-21.txt:7-7, memory/.dreams/session-corpus/2026-04-21.txt:8-8; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-25T03:00:01.246Z",
+      "lastRecalledAt": "2026-04-25T03:00:01.246Z",
+      "queryHashes": [
+        "409c33906af9"
+      ],
+      "recallDays": [
+        "2026-04-24",
+        "2026-04-25"
+      ],
+      "conceptTags": [
+        "1.00",
+        "5-5",
+        "7-7",
+        "8-8",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-24.md:447:450": {
+      "key": "memory:memory/2026-04-24.md:447:450",
+      "path": "memory/2026-04-24.md",
+      "startLine": 447,
+      "endLine": 450,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `user` kept surfacing across 61 memories.; confidence: 0.90; evidence: memory/.dreams/session-corpus/2026-04-21.txt:1-1, memory/.dreams/session-corpus/2026-04-21.txt:2-2, memory/.dreams/session-corpus/2026-04-21.txt:3-3; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-25T03:00:01.246Z",
+      "lastRecalledAt": "2026-04-25T03:00:01.246Z",
+      "queryHashes": [
+        "409c33906af9"
+      ],
+      "recallDays": [
+        "2026-04-24",
+        "2026-04-25"
+      ],
+      "conceptTags": [
+        "0.90",
+        "1-1",
+        "2-2",
+        "3-3",
+        "reflections",
+        "theme",
+        "user",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-24.md:453:455": {
+      "key": "memory:memory/2026-04-24.md:453:455",
+      "path": "memory/2026-04-24.md",
+      "startLine": 453,
+      "endLine": 455,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: Possible Lasting Truths: No strong candidate truths surfaced. [confidence=0.51 evidence=memory/2026-04-22.md:293-293]; Reflections: Theme: `assistant` kept surfacing across 50 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-21",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-25T03:00:01.246Z",
+      "lastRecalledAt": "2026-04-25T03:00:01.246Z",
+      "queryHashes": [
+        "409c33906af9"
+      ],
+      "recallDays": [
+        "2026-04-24",
+        "2026-04-25"
+      ],
+      "conceptTags": [
+        "0.51",
+        "memory/2026-04-22.md",
+        "293-293",
+        "1.00",
+        "dreams/session-corpus/2026-04-21",
+        "possible",
+        "lasting",
+        "truths"
+      ]
+    },
+    "memory:memory/2026-04-25.md:188:191": {
+      "key": "memory:memory/2026-04-25.md:188:191",
+      "path": "memory/2026-04-25.md",
+      "startLine": 188,
+      "endLine": 191,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 74 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-21.txt:5-5, memory/.dreams/session-corpus/2026-04-21.txt:7-7, memory/.dreams/session-corpus/2026-04-21.txt:8-8; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-26T03:00:00.103Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "90c0a0f693f1"
+      ],
+      "recallDays": [
+        "2026-04-25",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "1.00",
+        "5-5",
+        "7-7",
+        "8-8",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-25.md:192:195": {
+      "key": "memory:memory/2026-04-25.md:192:195",
+      "path": "memory/2026-04-25.md",
+      "startLine": 192,
+      "endLine": 195,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `user` kept surfacing across 62 memories.; confidence: 0.90; evidence: memory/.dreams/session-corpus/2026-04-21.txt:1-1, memory/.dreams/session-corpus/2026-04-21.txt:2-2, memory/.dreams/session-corpus/2026-04-21.txt:3-3; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-26T03:00:00.103Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "90c0a0f693f1"
+      ],
+      "recallDays": [
+        "2026-04-25",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "0.90",
+        "1-1",
+        "2-2",
+        "3-3",
+        "reflections",
+        "theme",
+        "user",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-25.md:198:200": {
+      "key": "memory:memory/2026-04-25.md:198:200",
+      "path": "memory/2026-04-25.md",
+      "startLine": 198,
+      "endLine": 200,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: Possible Lasting Truths: Assistant: **Mortgage calculator UI is done. All committed and pushed.** --- ## ✅ WHAT'S BUILT **Engine (backend logic):** - `src/engine/mortgage.ts` — Pure TypeScript, Decimal.js precision - `__tests__/engine/mortgage.test.ts` —",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-26T03:00:00.103Z",
+      "lastRecalledAt": "2026-04-26T03:00:00.103Z",
+      "queryHashes": [
+        "90c0a0f693f1"
+      ],
+      "recallDays": [
+        "2026-04-25",
+        "2026-04-26"
+      ],
+      "conceptTags": [
+        "src/engine/mortgage.ts",
+        "decimal.js",
+        "engine/mortgage.test.ts",
+        "possible",
+        "lasting",
+        "truths",
+        "assistant",
+        "mortgage"
       ]
     }
   }

@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Text, useTheme, List } from 'react-native-paper';
 import { router } from 'expo-router';
 

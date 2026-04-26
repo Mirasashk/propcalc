@@ -12,8 +12,8 @@ import { Card, Button } from '@/components/ui';
 import {
   getCalculations,
   deleteCalculation,
-  SavedCalculation,
 } from '@/services/storage';
+import { SavedCalculation } from '@/types/saved';
 import { shareCalculation } from '@/utils/share';
 import { formatCurrency } from '@/engine/utils/currency';
 

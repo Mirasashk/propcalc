@@ -157,8 +157,8 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
   const handleSave = useCallback(async () => {
     if (!result || !savedInputs) return;
     try {
-      const { saveCalculation } = await import('../../services/storage');
-      const { parseCurrency } = await import('../../engine/utils/currency');
+      const { saveCalculation } = await import('@/services/storage');
+      const { parseCurrency } = await import('@/engine/utils/currency');
       await saveCalculation({
         id: `mortgage-${Date.now()}`,
         type: 'mortgage',
@@ -172,6 +172,7 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
           monthlyPayment: result.monthlyPayment,
           totalInterest: result.totalInterest,
           totalCost: result.totalCost,
+          amortizationSchedule: result.amortizationSchedule,
         },
         createdAt: Date.now(),
       });
