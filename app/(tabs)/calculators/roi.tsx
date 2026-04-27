@@ -5,11 +5,13 @@ import {
   ScrollView,
   useWindowDimensions,
   Alert,
+  TouchableOpacity,
 } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useFormContext } from 'react-hook-form';
 import { z } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 import { Input, Button, Card } from '@components/ui';
 import { CalculatorForm, ResultCard } from '@components/calculators';
@@ -222,6 +224,8 @@ function ROIFormContent({ onCalculate }: ROIFormContentProps): React.JSX.Element
         error={errors.holdingPeriodYears?.message}
         accessibilityLabel="Holding period input"
         suffix="years"
+        returnKeyType="done"
+        onSubmitEditing={handleSubmit(onCalculate)}
       />
 
       <Button
@@ -354,18 +358,30 @@ export default function ROICalculatorScreen(): React.JSX.Element {
       ]}
       keyboardShouldPersistTaps="handled"
     >
-      <Text
-        variant="headlineMedium"
-        style={[styles.header, { color: theme.colors.onBackground }]}
-      >
-        ROI Calculator
-      </Text>
-      <Text
-        variant="bodyMedium"
-        style={[styles.subheader, { color: theme.colors.onSurfaceVariant }]}
-      >
-        Calculate cash-on-cash return and cash flow
-      </Text>
+      <View style={styles.headerRow}>
+        <TouchableOpacity
+          onPress={() => router.back()}
+          style={styles.backButton}
+          accessibilityLabel="Go back"
+          accessibilityRole="button"
+        >
+          <Ionicons name="arrow-back" size={24} color={theme.colors.onBackground} />
+        </TouchableOpacity>
+        <View style={styles.headerText}>
+          <Text
+            variant="headlineMedium"
+            style={[styles.header, { color: theme.colors.onBackground }]}
+          >
+            ROI Calculator
+          </Text>
+          <Text
+            variant="bodyMedium"
+            style={[styles.subheader, { color: theme.colors.onSurfaceVariant }]}
+          >
+            Calculate cash-on-cash return and cash flow
+          </Text>
+        </View>
+      </View>
 
       <Card>
         <CalculatorForm
@@ -445,12 +461,25 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 20,
+    gap: 12,
+  },
+  backButton: {
+    padding: 4,
+    marginTop: 4,
+  },
+  headerText: {
+    flex: 1,
+  },
   header: {
     marginBottom: 4,
     fontWeight: '700',
   },
   subheader: {
-    marginBottom: 20,
+    marginBottom: 0,
   },
   sectionHeader: {
     flexDirection: 'row',

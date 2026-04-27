@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -10,6 +10,7 @@ import { Text, useTheme, IconButton } from 'react-native-paper';
 import { Swipeable } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import Animated, { FadeInUp } from 'react-native-reanimated';
+import { useFocusEffect } from 'expo-router';
 
 import { Card } from '@/components/ui';
 import {
@@ -30,6 +31,7 @@ export default function SavedCalculationsScreen(): React.JSX.Element {
 
   const loadCalculations = useCallback(async () => {
     try {
+      setLoading(true);
       const data = await getCalculations();
       setCalculations(data);
     } catch (err) {
@@ -39,9 +41,11 @@ export default function SavedCalculationsScreen(): React.JSX.Element {
     }
   }, []);
 
-  useEffect(() => {
-    loadCalculations();
-  }, [loadCalculations]);
+  useFocusEffect(
+    useCallback(() => {
+      loadCalculations();
+    }, [loadCalculations])
+  );
 
   const handleDelete = useCallback(async (id: string) => {
     try {

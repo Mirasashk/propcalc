@@ -5,11 +5,13 @@ import {
   ScrollView,
   useWindowDimensions,
   Alert,
+  TouchableOpacity,
 } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useFormContext } from 'react-hook-form';
 import { z } from 'zod';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 import { Input, Button, Card } from '@components/ui';
 import { CalculatorForm, ResultCard, AmortizationChart } from '@components/calculators';
@@ -59,6 +61,8 @@ function MortgageFormContent({ onCalculate }: MortgageFormContentProps): React.J
         helperText="Total purchase price of the property"
         accessibilityLabel="Loan amount input"
         currency
+        returnKeyType="next"
+        onSubmitEditing={() => {}}
       />
       <Input
         label="Down Payment"
@@ -70,6 +74,7 @@ function MortgageFormContent({ onCalculate }: MortgageFormContentProps): React.J
         helperText="Amount paid upfront (optional)"
         accessibilityLabel="Down payment input"
         currency
+        returnKeyType="next"
       />
       <Input
         label="Interest Rate"
@@ -81,6 +86,7 @@ function MortgageFormContent({ onCalculate }: MortgageFormContentProps): React.J
         helperText="Annual interest rate as a percentage"
         accessibilityLabel="Interest rate input"
         suffix="%"
+        returnKeyType="next"
       />
       <Input
         label="Loan Term"
@@ -92,16 +98,16 @@ function MortgageFormContent({ onCalculate }: MortgageFormContentProps): React.J
         helperText="Length of the loan in years"
         accessibilityLabel="Loan term input"
         suffix="years"
+        returnKeyType="done"
+        onSubmitEditing={handleSubmit(onCalculate)}
       />
-      <View style={styles.buttonRow}>
-        <Button
-          title="Calculate Mortgage"
-          onPress={handleSubmit(onCalculate)}
-          variant="primary"
-          accessibilityLabel="Calculate mortgage payment"
-          style={styles.calculateButton}
-        />
-      </View>
+      <Button
+        title="Calculate Mortgage"
+        onPress={handleSubmit(onCalculate)}
+        variant="primary"
+        accessibilityLabel="Calculate mortgage payment"
+        style={styles.calculateButton}
+      />
     </View>
   );
 }
@@ -192,18 +198,30 @@ export default function MortgageCalculatorScreen(): React.JSX.Element {
       ]}
       keyboardShouldPersistTaps="handled"
     >
-      <Text
-        variant="headlineMedium"
-        style={[styles.header, { color: theme.colors.onBackground }]}
-      >
-        Mortgage Calculator
-      </Text>
-      <Text
-        variant="bodyMedium"
-        style={[styles.subheader, { color: theme.colors.onSurfaceVariant }]}
-      >
-        Estimate monthly payments and total cost
-      </Text>
+      <View style={styles.headerRow}>
+        <TouchableOpacity
+          onPress={() => router.back()}
+          style={styles.backButton}
+          accessibilityLabel="Go back"
+          accessibilityRole="button"
+        >
+          <Ionicons name="arrow-back" size={24} color={theme.colors.onBackground} />
+        </TouchableOpacity>
+        <View style={styles.headerText}>
+          <Text
+            variant="headlineMedium"
+            style={[styles.header, { color: theme.colors.onBackground }]}
+          >
+            Mortgage Calculator
+          </Text>
+          <Text
+            variant="bodyMedium"
+            style={[styles.subheader, { color: theme.colors.onSurfaceVariant }]}
+          >
+            Estimate monthly payments and total cost
+          </Text>
+        </View>
+      </View>
 
       <Card>
         <CalculatorForm
@@ -294,12 +312,25 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 20,
+    gap: 12,
+  },
+  backButton: {
+    padding: 4,
+    marginTop: 4,
+  },
+  headerText: {
+    flex: 1,
+  },
   header: {
     marginBottom: 4,
     fontWeight: '700',
   },
   subheader: {
-    marginBottom: 20,
+    marginBottom: 0,
   },
   buttonRow: {
     marginTop: 8,

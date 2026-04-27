@@ -1,14 +1,18 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 import {
   View,
   StyleSheet,
   useWindowDimensions,
   ScrollView,
   TouchableOpacity,
+  Modal,
+  Pressable,
+  FlatList,
 } from 'react-native';
-import { Text, useTheme } from 'react-native-paper';
+import { Text, useTheme, IconButton } from 'react-native-paper';
 import { BarChart } from 'react-native-gifted-charts';
 import { AmortizationEntry } from '@engine/types';
+import { formatCurrency } from '@engine/utils/currency';
 
 interface AmortizationChartProps {
   data: AmortizationEntry[];
@@ -56,6 +60,8 @@ export const AmortizationChart = React.memo(function AmortizationChart({
   const theme = useTheme();
   const { width: screenWidth } = useWindowDimensions();
   const [interval, setInterval] = useState<number>(1);
+  const [selectedYear, setSelectedYear] = useState<YearAggregate | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
   const years = useMemo(() => aggregateByYear(data), [data]);
   const totalYears = years.length;
@@ -68,12 +74,17 @@ export const AmortizationChart = React.memo(function AmortizationChart({
     return 10;
   }, [totalYears]);
 
-  // Initialize interval if not set
+  // Track if we've auto-initialized the interval (only do it once on mount)
+  const didAutoInit = useRef(false);
+
+  // Initialize interval once on mount if loan is long
   React.useEffect(() => {
-    if (interval === 1 && totalYears > 10) {
+    if (!didAutoInit.current && totalYears > 10) {
+      didAutoInit.current = true;
       setInterval(suggestedInterval);
     }
-  }, [totalYears, suggestedInterval, interval]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalYears, suggestedInterval]);
 
   const displayYears = useMemo(
     () => filterByInterval(years, interval),
@@ -90,6 +101,14 @@ export const AmortizationChart = React.memo(function AmortizationChart({
     }));
   }, [displayYears, theme.colors.primary, theme.colors.tertiary]);
 
+  const handleBarPress = (index: number) => {
+    const yearData = displayYears[index];
+    if (yearData) {
+      setSelectedYear(yearData);
+      setShowModal(true);
+    }
+  };
+
   if (data.length === 0) {
     return (
       <View style={styles.empty}>
@@ -101,8 +120,8 @@ export const AmortizationChart = React.memo(function AmortizationChart({
   }
 
   // Calculate chart dimensions
-  const containerPadding = 32; // Card content padding
-  const availableWidth = screenWidth - containerPadding - 32; // screen padding
+  const containerPadding = 32;
+  const availableWidth = screenWidth - containerPadding - 32;
   const chartHeight = 220;
 
   // Minimum width per bar to ensure readability
@@ -117,6 +136,13 @@ export const AmortizationChart = React.memo(function AmortizationChart({
     12,
     (totalChartWidth - barSpacing * 2) / chartData.length - barSpacing
   );
+
+  // Get monthly data for the selected year
+  const getMonthlyDataForYear = (yearNum: number) => {
+    const startMonth = (yearNum - 1) * 12 + 1;
+    const endMonth = yearNum * 12;
+    return data.filter((entry) => entry.month >= startMonth && entry.month <= endMonth);
+  };
 
   return (
     <View style={styles.container}>
@@ -170,6 +196,11 @@ export const AmortizationChart = React.memo(function AmortizationChart({
         </View>
       )}
 
+      {/* Tap hint */}
+      <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant, marginBottom: 8 }}>
+        Tap a bar to see details
+      </Text>
+
       {/* Horizontal scroll for chart overflow */}
       <ScrollView
         horizontal
@@ -193,10 +224,12 @@ export const AmortizationChart = React.memo(function AmortizationChart({
           yAxisColor={theme.colors.outline}
           rulesColor={theme.colors.outlineVariant}
           rulesType="solid"
-          showValuesAsTopLabel={false}
+          showValuesAsTopLabel={true}
+          topLabelTextStyle={{ color: theme.colors.onSurfaceVariant, fontSize: 9 }}
           hideRules={false}
           hideYAxisText={false}
           hideOrigin={false}
+          onPress={handleBarPress}
         />
       </ScrollView>
 
@@ -214,6 +247,102 @@ export const AmortizationChart = React.memo(function AmortizationChart({
           </Text>
         </View>
       </View>
+
+      {/* Year Detail Modal */}
+      <Modal
+        visible={showModal}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setShowModal(false)}
+      >
+        <Pressable
+          style={[styles.modalOverlay, { backgroundColor: 'rgba(0,0,0,0.5)' }]}
+          onPress={() => setShowModal(false)}
+        >
+          <View style={[styles.modalContent, { backgroundColor: theme.colors.surface }]}>
+            <View style={styles.modalHeader}>
+              <View>
+                <Text variant="titleLarge" style={{ color: theme.colors.onSurface, fontWeight: '700' }}>
+                  Year {selectedYear?.year}
+                </Text>
+                <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>
+                  Monthly breakdown
+                </Text>
+              </View>
+              <IconButton
+                icon="close"
+                size={24}
+                onPress={() => setShowModal(false)}
+                iconColor={theme.colors.onSurfaceVariant}
+              />
+            </View>
+
+            {/* Year Summary */}
+            {selectedYear && (
+              <View style={[styles.yearSummary, { backgroundColor: theme.colors.primaryContainer }]}>
+                <View style={styles.summaryItem}>
+                  <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>Principal</Text>
+                  <Text variant="titleMedium" style={{ color: theme.colors.primary, fontWeight: '700' }}>
+                    {formatCurrency(selectedYear.principal)}
+                  </Text>
+                </View>
+                <View style={styles.summaryItem}>
+                  <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>Interest</Text>
+                  <Text variant="titleMedium" style={{ color: theme.colors.tertiary, fontWeight: '700' }}>
+                    {formatCurrency(selectedYear.interest)}
+                  </Text>
+                </View>
+                <View style={styles.summaryItem}>
+                  <Text variant="bodySmall" style={{ color: theme.colors.onSurfaceVariant }}>End Balance</Text>
+                  <Text variant="titleMedium" style={{ color: theme.colors.onSurface, fontWeight: '700' }}>
+                    {formatCurrency(selectedYear.endBalance)}
+                  </Text>
+                </View>
+              </View>
+            )}
+
+            {/* Monthly Table Header */}
+            <View style={[styles.tableHeader, { borderBottomColor: theme.colors.outline }]}>
+              <Text variant="labelMedium" style={[styles.tableCell, { color: theme.colors.onSurfaceVariant }]}>
+                Month
+              </Text>
+              <Text variant="labelMedium" style={[styles.tableCellRight, { color: theme.colors.onSurfaceVariant }]}>
+                Principal
+              </Text>
+              <Text variant="labelMedium" style={[styles.tableCellRight, { color: theme.colors.onSurfaceVariant }]}>
+                Interest
+              </Text>
+              <Text variant="labelMedium" style={[styles.tableCellRight, { color: theme.colors.onSurfaceVariant }]}>
+                Balance
+              </Text>
+            </View>
+
+            {/* Monthly Data */}
+            <FlatList
+              data={selectedYear ? getMonthlyDataForYear(selectedYear.year) : []}
+              keyExtractor={(item) => item.month.toString()}
+              renderItem={({ item }) => (
+                <View style={styles.tableRow}>
+                  <Text variant="bodySmall" style={[styles.tableCell, { color: theme.colors.onSurface }]}>
+                    {item.month}
+                  </Text>
+                  <Text variant="bodySmall" style={[styles.tableCellRight, { color: theme.colors.primary }]}>
+                    {formatCurrency(item.principal)}
+                  </Text>
+                  <Text variant="bodySmall" style={[styles.tableCellRight, { color: theme.colors.tertiary }]}>
+                    {formatCurrency(item.interest)}
+                  </Text>
+                  <Text variant="bodySmall" style={[styles.tableCellRight, { color: theme.colors.onSurface }]}>
+                    {formatCurrency(item.balance)}
+                  </Text>
+                </View>
+              )}
+              style={styles.tableList}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </Pressable>
+      </Modal>
     </View>
   );
 });
@@ -266,5 +395,51 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    padding: 20,
+    paddingBottom: 40,
+    maxHeight: '80%',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 16,
+  },
+  yearSummary: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 16,
+  },
+  summaryItem: {
+    alignItems: 'center',
+  },
+  tableHeader: {
+    flexDirection: 'row',
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+  },
+  tableRow: {
+    flexDirection: 'row',
+    paddingVertical: 10,
+  },
+  tableCell: {
+    flex: 1,
+  },
+  tableCellRight: {
+    flex: 1.2,
+    textAlign: 'right',
+  },
+  tableList: {
+    maxHeight: 300,
   },
 });

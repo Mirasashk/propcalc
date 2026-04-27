@@ -21,6 +21,10 @@ interface InputProps {
   currency?: boolean;
   /** Suffix to display (e.g. '%', 'years') */
   suffix?: string;
+  /** Return key type for the keyboard */
+  returnKeyType?: 'done' | 'next' | 'go' | 'send';
+  /** Callback when user presses the return key */
+  onSubmitEditing?: () => void;
 }
 
 export const Input = React.memo(function Input({
@@ -37,6 +41,8 @@ export const Input = React.memo(function Input({
   disabled,
   currency,
   suffix,
+  returnKeyType = 'done',
+  onSubmitEditing,
 }: InputProps): React.JSX.Element {
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
@@ -87,6 +93,8 @@ export const Input = React.memo(function Input({
         autoFocus={autoFocus}
         disabled={disabled}
         mode="outlined"
+        returnKeyType={returnKeyType}
+        onSubmitEditing={onSubmitEditing}
         style={[
           styles.input,
           { backgroundColor: theme.colors.surface },
