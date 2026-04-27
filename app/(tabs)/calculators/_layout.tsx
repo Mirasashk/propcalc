@@ -2,7 +2,7 @@ import { Stack } from 'expo-router';
 
 export default function CalculatorsLayout() {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="index"
         options={{ title: 'Calculators' }}

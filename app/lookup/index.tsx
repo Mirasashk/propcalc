@@ -1,10 +1,13 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { useTheme } from 'react-native-paper';
 
 export default function LookupScreen() {
+  const theme = useTheme();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Property Lookup</Text>
-      <Text style={styles.subtitle}>Coming soon...</Text>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <Text style={[styles.title, { color: theme.colors.onBackground }]}>Property Lookup</Text>
+      <Text style={[styles.subtitle, { color: theme.colors.onSurfaceVariant }]}>Coming soon...</Text>
     </View>
   );
 }
@@ -14,7 +17,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
   },
   title: {
     fontSize: 24,
@@ -23,6 +25,5 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
   },
 });
